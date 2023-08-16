@@ -1,26 +1,25 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom';
 import Navigation from '../components/Navigation';
-import { makeStyles } from "@material-ui/core";
+import { makeStyles, createTheme, ThemeProvider } from "@material-ui/core";
+
+const darkTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#fff',
+    },
+    type: 'dark',
+  },
+});
 
 export default function Rootpage() {
-
-  const useStyles = makeStyles(() => ({
-    App: {
-      backgroundColor: '#14161a',
-      color: '#e93a45',
-    }
-  }));
   
-  const classes = useStyles();
-
-
   return (
-    <div className={classes.App}>
+    <ThemeProvider theme={darkTheme}>
     <Navigation />
     <main>
         <Outlet />
     </main>
-    </div>
+    </ThemeProvider>
   )
 }
