@@ -1,7 +1,7 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom'
-import { AppBar, Container, MenuItem, Select, Typography, makeStyles } from '@material-ui/core'
-
+import React, { useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { AppBar, Container, MenuItem, Select, Typography, makeStyles, Toolbar } from '@material-ui/core';
+import {useCurrency} from '../context/context';
 
 const useStyles = makeStyles(() => ({
     title: {
@@ -15,14 +15,18 @@ const useStyles = makeStyles(() => ({
   }));
 
 export default function Navigation() {
-    
-    const classes = useStyles();
 
-    const navigate = useNavigate();
+  const classes = useStyles();
+
+  const navigate = useNavigate();
     
-    function redirectToHome() {
-      navigate('/')
-    }
+  function redirectToHome() {
+    navigate('/')
+  }
+
+  const {currency, setCurrency} = useCurrency();
+
+  console.log(currency);
 
 
   return (
@@ -32,26 +36,28 @@ export default function Navigation() {
       }} 
       position="static">
         <Container>
-            <toolbar style={{
+            <Toolbar style={{
               justifyContent: 'center', 
               display: 'flex',
               alignItems: 'center',
               }}>
-                <Typography onClick={redirectToHome} className={classes.title}>Crypto Hunter</Typography>
+                <Typography onClick={redirectToHome} className={classes.title}>Crypto Hunter
+                </Typography>
 
                 <Select 
                   variant="outlined" 
-                  defaultValue={'DKK'}
                   style={{
                     width: 100, 
                     height: 40, 
                     marginRight: 15,
                   }}
+                  value={currency}
+                  onChange={(e) => setCurrency(e.target.value) }
                 >
                   <MenuItem value={'DKK'}>DKK</MenuItem>
                   <MenuItem value={'USD'}>USD</MenuItem>
                 </Select>
-            </toolbar>
+            </Toolbar>
         </Container>
     </AppBar>
 
