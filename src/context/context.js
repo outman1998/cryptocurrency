@@ -5,10 +5,11 @@ const ctx = createContext();
 export default function Context({children}) {
 
     const [currency, setCurrency] = useState('DKK');
+    const [symbol, setSymbol] = useState('dkk');
 
 
   return (
-    <ctx.Provider value={{currency, setCurrency}}>
+    <ctx.Provider value={{currency, setCurrency, symbol}}>
         {children}
     </ctx.Provider>
   )
