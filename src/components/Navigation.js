@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { AppBar, Container, MenuItem, Select, Typography, makeStyles, Toolbar } from '@material-ui/core';
 import {useCurrency} from '../context/context';
