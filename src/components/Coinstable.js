@@ -4,6 +4,7 @@ import {useCurrency} from '../context/context';
 import axios from 'axios';
 import { Container, createTheme, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography } from "@material-ui/core";
 import {useNavigate} from 'react-router-dom';
+import {numberWithCommas} from './Carousel';
 
 const darkTheme = createTheme({
   palette: {
@@ -24,11 +25,10 @@ export default function Coinstable() {
 
     const fetchCoins =  async() => {
         setLoading(true);
-        const {data} = await axios.get(CoinList(currency)).then(res => {
-          const data = res.data;
-          setCoins(data);
-          setLoading(false);
-        });
+        const {data} = await axios.get(CoinList(currency));
+
+        setCoins(data);
+        setLoading(false);
     };
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
@@ -100,21 +100,6 @@ export default function Coinstable() {
                   <TableBody>
                     {handleSearch().map((row) => {
                       const profit = row.price_change_percentage_24h > 0;
-                      <TableRow key={row.name}>
-                        <TableCell component="th" scope="row">
-                          {row.name}
-                        </TableCell>
-                        <TableCell align="right">{row.calories}</TableCell>
-                        <TableCell align="right">{row.fat}</TableCell>
-                        <TableCell align="right">{row.carbs}</TableCell>
-                        <TableCell align="right">{row.protein}</TableCell>
-                      </TableRow>
-                    })}
-                  </TableBody>
-
-                  {/* <TableBody>
-                    {handleSearch().map((row) => {
-                      const profit = row.price_change_percentage_24h > 0;
 
                       return (
                         <TableRow 
@@ -127,12 +112,32 @@ export default function Coinstable() {
                             display: 'flex',
                             gap: 15
                           }}>
+                            <img
+                            src={row?.image}
+                            alt={row.name}
+                            height="50"
+                            style={{marginBottom: 10}}
+                            />
+                            <div style={{display: 'flex', flexDirection: "column"}}>
+                              <span
+                              style={{textTransform: 'uppercase', fontSize: 22}}
+                              >
+                                {row.symbol}
+                              </span>
+                              <span style={{color: 'darkgrey'}}>{row.name}</span>
+                            </div>
+                          </TableCell>
+                          <TableCell
+                          align='right'
+                          >
+                            {symbol} 
+                            {numberWithCommas(row.current_price.toFixed(2))}
                           </TableCell>
                         </TableRow>
                       )
 
                     })}
-                  </TableBody> */}
+                  </TableBody>
 
                 </Table>
               )
