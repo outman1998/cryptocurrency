@@ -23,20 +23,16 @@ export default function Coinstable() {
     const {currency, symbol} = useCurrency();
     const navigate = useNavigate();
 
-    const fetchCoins =  async() => {
-        setLoading(true);
-        const {data} = await axios.get(CoinList(currency));
-
-        setCoins(data);
-        setLoading(false);
-    };
-
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
     useEffect(() => {
-        fetchCoins();
+      
+        // axios.get(CoinList(currency)).then(res => {
+        //   setCoins(res.data)
+        // }).catch(error => console.log(error));
+
     }, [currency]);
 
-    console.log(coins);
+    // console.log(coins);
 
     const handleSearch = () => {
       return coins.filter((coin) => 
@@ -47,11 +43,18 @@ export default function Coinstable() {
 
     const tableHeader =["coin", "price", "24h change", "market cap"];
 
-    // const useStyles = makeStyles(() => {
+    const useStyles = makeStyles(() => ({
+      row: {
+        backgroundColor: '#16171a',
+        cursor: 'pointer',
+        "&:hover": {
+          backgroundColor: '#131111'
+        },
+        fontFamily: 'Montserrat',
+      },
+    }));
 
-    // })
-
-    // const classes = useStyles();
+    const classes = useStyles();
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -89,7 +92,7 @@ export default function Coinstable() {
                           fontFamily: 'Montserrat',
                         }}
                         key={row}
-                        align={row === "coin" ? " " :  "right"}
+                        align={row === "coin" ? "inherit" :  "right"}
                         >
                         {row}
                       </TableCell>
@@ -104,7 +107,9 @@ export default function Coinstable() {
                       return (
                         <TableRow 
                         onClick={() => navigate(`/coins/${row.id}`)}
-                        key={row.name}>
+                        key={row.name}
+                        className={classes.row}
+                        >
                           <TableCell 
                           component="th" 
                           scope='row'
@@ -132,6 +137,22 @@ export default function Coinstable() {
                           >
                             {symbol} 
                             {numberWithCommas(row.current_price.toFixed(2))}
+                          </TableCell>
+                          <TableCell
+                          align='right'
+                          style={{
+                            color: profit > 0 ? 'rgb(14, 203, 129)' : 'red', fontWeight: 500
+                          }}
+                          >
+                            {profit && '+'}
+                            {row.price_change_percentage_24h.toFixed(2)}%
+                          </TableCell>
+                          <TableCell align='right'>
+                            {symbol} {' '}
+                            {numberWithCommas(
+                              row.market_cap.toString().slice(0, -6)
+                            )}
+                            M
                           </TableCell>
                         </TableRow>
                       )

@@ -1,6 +1,5 @@
 import { Container, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
-import Banner2 from '../banner2.jpg'
 import Carousel from './Carousel';
 
 const url = 'https://raw.githubusercontent.com/piyush-eon/react-crypto-tracker/master/public/banner2.jpg';

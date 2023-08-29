@@ -35,14 +35,22 @@ export default function Carousel() {
     const {currency, symbol} = useCurrency();
 
     const fetchTrending =  async() => {
-        const {data} = await axios.get(TrendingCoins(currency));
-        setTrending(data);
+        const {data} = await fetch(TrendingCoins(currency)).then(data => {
+            setTrending(data);
+        }).catch(rejected => {
+            console.log(rejected);
+        })
     }
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
     useEffect(() => {
         fetchTrending();
+        // axios.get(TrendingCoins(currency)).then(res => {
+        //     setTrending(res.data)
+        // }).catch(error => console.log(error))
     }, [currency]);
+
+    console.log(trending);
 
     const responsive = {
         0: {
