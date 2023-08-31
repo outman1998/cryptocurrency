@@ -34,21 +34,19 @@ export default function Carousel() {
     const classes = useStyles();
     const {currency, symbol} = useCurrency();
 
-    const fetchTrending =  async() => {
-        const {data} = await fetch(TrendingCoins(currency)).then(data => {
-            setTrending(data);
-        }).catch(rejected => {
-            console.log(rejected);
-        })
-    }
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
-    useEffect(() => {
-        fetchTrending();
-        // axios.get(TrendingCoins(currency)).then(res => {
-        //     setTrending(res.data)
-        // }).catch(error => console.log(error))
-    }, [currency]);
+    const fetchTrendingCoins = async () => {
+        const { data } = await axios.get(TrendingCoins(currency));
+    
+        console.log(data);
+        setTrending(data);
+      };
+    
+      useEffect(() => {
+        fetchTrendingCoins();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, [currency]);
 
     console.log(trending);
 

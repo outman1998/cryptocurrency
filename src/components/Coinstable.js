@@ -5,6 +5,7 @@ import axios from 'axios';
 import { Container, createTheme, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography } from "@material-ui/core";
 import {useNavigate} from 'react-router-dom';
 import {numberWithCommas} from './Carousel';
+import { Pagination } from '@material-ui/lab';
 
 const darkTheme = createTheme({
   palette: {
@@ -15,6 +16,23 @@ const darkTheme = createTheme({
   },
 });
 
+const useStyles = makeStyles({
+  row: {
+    backgroundColor: "#16171a",
+    cursor: "pointer",
+    "&:hover": {
+      backgroundColor: "#131111",
+    },
+    fontFamily: "Montserrat",
+  },
+  pagination: {
+    "& .MuiPaginationItem-root": {
+      color: "gold",
+    },
+  },
+});
+
+
 export default function Coinstable() {
 
     const [coins, setCoins] = useState([]);
@@ -22,17 +40,25 @@ export default function Coinstable() {
     const [search, setSearch] = useState("");
     const {currency, symbol} = useCurrency();
     const navigate = useNavigate();
+    const classes = useStyles();
+
+    const [page, setPage] = useState(1);
+
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
+    const fetchCoins = async () => {
+      setLoading(true);
+      const { data } = await axios.get(CoinList(currency));
+      console.log(data);
+  
+      setCoins(data);
+      setLoading(false);
+    };
+  
     useEffect(() => {
-      
-        // axios.get(CoinList(currency)).then(res => {
-        //   setCoins(res.data)
-        // }).catch(error => console.log(error));
-
+      fetchCoins();
+      // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currency]);
-
-    // console.log(coins);
 
     const handleSearch = () => {
       return coins.filter((coin) => 
@@ -43,18 +69,6 @@ export default function Coinstable() {
 
     const tableHeader =["coin", "price", "24h change", "market cap"];
 
-    const useStyles = makeStyles(() => ({
-      row: {
-        backgroundColor: '#16171a',
-        cursor: 'pointer',
-        "&:hover": {
-          backgroundColor: '#131111'
-        },
-        fontFamily: 'Montserrat',
-      },
-    }));
-
-    const classes = useStyles();
 
   return (
     <ThemeProvider theme={darkTheme}>
@@ -101,7 +115,9 @@ export default function Coinstable() {
                  </TableHead>
 
                   <TableBody>
-                    {handleSearch().map((row) => {
+                    {handleSearch()
+                    .slice((page -1) * 10, (page-1) * 10 + 10)
+                    .map((row) => {
                       const profit = row.price_change_percentage_24h > 0;
 
                       return (
@@ -164,6 +180,21 @@ export default function Coinstable() {
               )
             }
           </TableContainer>
+
+          <Pagination 
+          style={{
+            padding: 20,
+            width: '100%',
+            display: 'flex',
+            justifyContent: 'center'
+          }}
+          classes={{ ul: classes.pagination }}
+          count={(handleSearch()?.length / 10).toFixed(0)}
+          onChange={(_, value) => {
+            setPage(value);
+            window.scroll(0, 450);
+          }}
+          />
         </Container>
 
     </ThemeProvider>
