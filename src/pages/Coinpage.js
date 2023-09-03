@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
+import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom';
 import {useCurrency} from '../context/context';
 import axios from 'axios';
@@ -13,30 +14,53 @@ export default function Coinpage() {
   const {currency} = useCurrency();
 
   const fetchCoin = async () => {
-  const {data} = await axios.get(SingleCoin(id));
-  setCoin(data);
-  }
+    try {
+      const { data } = await axios.get(SingleCoin(id));
+      setCoin(data);
+    } catch(error) {
+      console.log(error);
+      console.log("fejl i coinpage!!!");
+    }
 
-  console.log(coin);
+  };
 
   useEffect(() => {
     fetchCoin();
   }, []);
 
-  const useStyles = makeStyles(() => {
-    
-  });
+  console.log(coin);
+
+  const useStyles = makeStyles((theme) => ({
+    container: {
+      display: "flex",
+      [theme.breakpoints.down("md")]: {
+        flexDirection: "column",
+        alignItems: "center",
+      },
+    },
+    sidebar: {
+      width: "30%",
+      [theme.breakpoints.down("md")]: {
+        width: "100%",
+      },
+      display: "flex",
+      flexDirection: "column",
+      alignItems: "center",
+      marginTop: 25,
+      borderRight: "2px solid grey",
+    },
+    heading: {
+      fontWeight: "bold",
+      marginBottom: 20,
+      fontFamily: "Montserrat",
+    },
+  }));
 
   const classes = useStyles();
 
   return (
-    <div className={classes.container}>
-      <div className={classes.sidebar}>
-        {/* {sidebar} */}
-      </div>
-
-      {/* {chart} */}
-      <CoinInfo coin={coin} />
+    <div>
+      <CoinInfo />
     </div>
   )
 }

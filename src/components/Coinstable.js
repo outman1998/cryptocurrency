@@ -47,12 +47,19 @@ export default function Coinstable() {
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
     const fetchCoins = async () => {
+      try {
+
+      
       setLoading(true);
       const { data } = await axios.get(CoinList(currency));
-      console.log(data);
   
       setCoins(data);
       setLoading(false);
+      } catch(error) {
+        console.log(error); 
+        console.log("fejl!!"); 
+      }
+
     };
   
     useEffect(() => {
