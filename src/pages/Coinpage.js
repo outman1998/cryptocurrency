@@ -143,7 +143,7 @@ export default function Coinpage() {
                 fontFamily: "Montserrat",
               }}
             >
-              {numberWithCommas(
+              {'DKK' + ' ' + numberWithCommas(
                 coin?.market_data.market_cap[currency.toLowerCase()]
                   .toString()
                   .slice(0, -6)
