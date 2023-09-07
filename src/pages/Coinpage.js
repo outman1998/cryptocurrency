@@ -154,7 +154,7 @@ export default function Coinpage() {
         </div>
 
       </div>
-      <CoinInfo />
+      <CoinInfo coin={coin} />
     </div>
   )
 }
