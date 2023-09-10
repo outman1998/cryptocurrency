@@ -40,7 +40,7 @@ export default function CoinInfo({coin}) {
 
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
-  const {currency} = useCurrency();
+  const {currency, symbol} = useCurrency();
   const [flag,setflag] = useState(false);
 
 

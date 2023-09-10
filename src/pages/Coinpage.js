@@ -65,7 +65,7 @@ export default function Coinpage() {
 
   const {id} = useParams();
   const [coin, setCoin] = useState();
-  const {currency} = useCurrency();
+  const {currency, symbol} = useCurrency();
 
   const fetchCoin = async () => {
     try {
@@ -125,8 +125,9 @@ export default function Coinpage() {
             <Typography 
               variant='h5' 
               style={{fontFamily: 'Montserrat'}}
-            >               
-              {'DKK' + ' ' + numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}
+            >     
+            {symbol + ' '}          
+              {numberWithCommas(coin?.market_data.current_price[currency.toLowerCase()])}
             </Typography>
           </span>
 
@@ -143,7 +144,8 @@ export default function Coinpage() {
                 fontFamily: "Montserrat",
               }}
             >
-              {'DKK' + ' ' + numberWithCommas(
+              {symbol + ' '}
+              {numberWithCommas(
                 coin?.market_data.market_cap[currency.toLowerCase()]
                   .toString()
                   .slice(0, -6)

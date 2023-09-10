@@ -82,7 +82,8 @@ export default function Carousel() {
                 </span>
 
                 <span style={{fontSize: 22, fontWeight: 500}}>
-                    {symbol} {numberWithCommas(coin?.current_price.toFixed(2))}
+                    {symbol + ' '} 
+                    {numberWithCommas(coin?.current_price.toFixed(2))} 
                 </span>
             </Link>
         )
