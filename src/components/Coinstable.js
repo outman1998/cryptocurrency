@@ -2,64 +2,155 @@ import React, { useEffect, useState } from 'react';
 import {CoinList} from '../config/api';
 import {useCurrency} from '../context/context';
 import axios from 'axios';
-import { Container, createTheme, LinearProgress, makeStyles, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, TextField, ThemeProvider, Typography } from "@material-ui/core";
 import {useNavigate} from 'react-router-dom';
 import {numberWithCommas} from './Carousel';
-import { Pagination } from '@material-ui/lab';
-
-const darkTheme = createTheme({
-  palette: {
-    primary: {
-      main: '#fff',
-    },
-    type: 'dark',
-  },
-});
-
-const useStyles = makeStyles({
-  row: {
-    backgroundColor: "#16171a",
-    cursor: "pointer",
-    "&:hover": {
-      backgroundColor: "#131111",
-    },
-    fontFamily: "Montserrat",
-  },
-  pagination: {
-    "& .MuiPaginationItem-root": {
-      color: "gold",
-    },
-  },
-});
-
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, User, Pagination, Progress} from "@nextui-org/react";
 
 export default function Coinstable() {
 
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
-    const [search, setSearch] = useState("");
     const {currency, symbol} = useCurrency();
     const navigate = useNavigate();
-    const classes = useStyles();
 
-    const [page, setPage] = useState(1);
+    const INITIAL_VISIBLE_COLUMNS = ["coin", "price", "24h_change", "marketCap"];
 
+    const columns = [
+      {name: "ID", uid: "id", sortable: true},
+      {name: "Coin", uid: "coin", sortable: true},
+      {name: "Name", uid: "name", sortable: true},
+      {name: "Symbol", uid: "symbol", sortable: true},
+      {name: "Price", uid: "price"},
+      {name: "24h change", uid: "24h_change"},
+      {name: "Market cap", uid: "marketCap", sortable: true}
+    ];
+
+    const statusOptions = [
+      {name: "Active", uid: "active"},
+      {name: "Paused", uid: "paused"},
+      {name: "Vacation", uid: "vacation"},
+    ];
+
+    function capitalize(str) {
+      return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+    
+
+    const [filterValue, setFilterValue] = React.useState("");
+    const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
+    const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
+    const [statusFilter, setStatusFilter] = React.useState("all");
+    const [rowsPerPage, setRowsPerPage] = React.useState(20);
+    const [page, setPage] = React.useState(1);
+
+    const hasSearchFilter = Boolean(filterValue);
+
+    const headerColumns = React.useMemo(() => {
+      if (visibleColumns === "all") return columns;
+  
+      return columns.filter((column) => Array.from(visibleColumns).includes(column.uid));
+    }, [visibleColumns]);
+
+    const filteredItems = React.useMemo(() => {
+      let filteredUsers = [...coins];
+  
+      if (hasSearchFilter) {
+        filteredUsers = filteredUsers.filter((coin) =>
+        coin.name.toLowerCase().includes(filterValue.toLowerCase()),
+        );
+      }
+      if (statusFilter !== "all" && Array.from(statusFilter).length !== statusOptions.length) {
+        filteredUsers = filteredUsers.filter((coin) =>
+          Array.from(statusFilter).includes(coin.status),
+        );
+      }
+  
+      return filteredUsers;
+    }, [coins, filterValue, statusFilter]);
+
+    const pages = Math.ceil(coins.length / rowsPerPage);
+
+    const items = React.useMemo(() => {
+      const start = (page - 1) * rowsPerPage;
+      const end = start + rowsPerPage;
+  
+      return filteredItems.slice(start, end);
+    }, [page, filteredItems, rowsPerPage]);
+
+
+    const renderCell = React.useCallback((user, columnKey) => {
+
+      const cellValue = user[columnKey];
+      const profit = user.price_change_percentage_24h > 0;
+
+      switch (columnKey) {
+        case "coin":
+          return (
+            <User
+              avatarProps={{src: user.image}}
+              description={user.symbol}
+              name={user.name}
+            >
+              {user.name}
+            </User>
+          );
+        case "price":
+          return (
+            <div className="flex flex-col">
+              <p className="text-bold text-small capitalize">
+              {symbol + ' '} {numberWithCommas(user.current_price.toFixed(2))}
+              </p>
+            </div>
+          );
+        case "24h_change":
+          return (
+            <p>
+              {profit && '+'} {user.price_change_percentage_24h.toFixed(2)}%
+            </p>
+          );
+        case "marketCap":
+          return (
+            <p>
+              {symbol + ' '} {numberWithCommas(user.market_cap.toString().slice(0, -6))}
+             </p>
+          );
+        default:
+          return cellValue;
+      }
+
+    }, []);
+
+  const onRowsPerPageChange = React.useCallback((e) => {
+    setRowsPerPage(Number(e.target.value));
+    setPage(1);
+  }, []);
+
+  const onSearchChange = React.useCallback((value) => {
+    if (value) {
+      setFilterValue(value);
+      setPage(1);
+    } else {
+      setFilterValue("");
+    }
+  }, []);
+
+  const onClear = React.useCallback(()=>{
+    setFilterValue("")
+    setPage(1)
+  },[]);
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
     const fetchCoins = async () => {
       try {
-
-      
-      setLoading(true);
-      const { data } = await axios.get(CoinList(currency));
-  
-      setCoins(data);
-      setLoading(false);
+        setLoading(true);
+        const { data } = await axios.get(CoinList(currency));
+        console.log(data);
+        setCoins(data);
+        setLoading(false);
       } catch(error) {
         console.log(error); 
         console.log("fejl!!"); 
       }
-
     };
   
     useEffect(() => {
@@ -67,143 +158,110 @@ export default function Coinstable() {
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [currency]);
 
-    const handleSearch = () => {
-      return coins.filter((coin) => 
-        coin.name.toLowerCase().includes(search) || 
-        coin.symbol.toLowerCase().includes(search)
-      )
-    }
+    const topContent = React.useMemo(() => {
+      return (
+        <>
+        <div className='flex justify-end'>
+        <Input
+              isClearable
+              className="w-full sm:max-w-[44%]"
+              placeholder="Search by name..."
+              value={filterValue}
+              onClear={() => onClear()}
+              onValueChange={onSearchChange}
+            />
+        </div>
 
-    const tableHeader =["coin", "price", "24h change", "market cap"];
-
+          <div className="flex justify-between items-center">
+            <span className="text-default-400 text-small">Total: {coins.length} coins</span>
+            <label className="flex items-center text-default-400 text-small">
+              Rows per page:
+              <select
+                className="bg-transparent outline-none text-default-400 text-small"
+                onChange={onRowsPerPageChange}
+              >
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="15">15</option>
+              </select>
+            </label>
+          </div>
+        </>
+      );
+    }, [
+      filterValue,
+      statusFilter,
+      visibleColumns,
+      onRowsPerPageChange,
+      coins.length,
+      onSearchChange,
+      hasSearchFilter,
+    ]);
+  
+    const bottomContent = React.useMemo(() => {
+      return (
+        <div className='flex justify-center'>
+          <Pagination
+            isCompact
+            showControls
+            showShadow
+            color="primary"
+            page={page}
+            total={pages}
+            onChange={(page) => setPage(page)}
+          />
+        </div>
+      );
+    }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <ThemeProvider theme={darkTheme}>
-
-        <Container style={{textAlign: 'center'}}>
-          <Typography
-          variant='h4'
-          style={{margin: 18, fontFamily: 'Montserrat', color: 'white'}}
-          >Cryptocurrency prices by market cap
-          </Typography>
-
-          <TextField label="Search for a Crypto currency" variant='outlined'
-          style={{marginBottom: 20, width: "100%"}}
-          onChange={(e) => {
-            setSearch(e.target.value)
-          }} 
-          />
-
-          <TableContainer>
-            {
-              loading ? (
-                <LinearProgress 
-                style={{backgroundColor: 'gold'}} /> 
-              ) : (
-                <Table>
-
-                 <TableHead style={{backgroundColor: '#EEBC1D'}}>
-                  <TableRow>
-                    {tableHeader.map((row) => {
-                      return (
-                      <TableCell 
-                        style={{
-                          color: 'black',
-                          fontWeight: '700',
-                          fontFamily: 'Montserrat',
-                        }}
-                        key={row}
-                        align={row === "coin" ? "inherit" :  "right"}
-                        >
-                        {row}
-                      </TableCell>
-                    )})}
-                  </TableRow>
-                 </TableHead>
-
-                  <TableBody>
-                    {handleSearch()
-                    .slice((page -1) * 10, (page-1) * 10 + 10)
-                    .map((row) => {
-                      const profit = row.price_change_percentage_24h > 0;
-
-                      return (
-                        <TableRow 
-                        onClick={() => navigate(`/coins/${row.id}`)}
-                        key={row.name}
-                        className={classes.row}
-                        >
-                          <TableCell 
-                          component="th" 
-                          scope='row'
-                          style={{
-                            display: 'flex',
-                            gap: 15
-                          }}>
-                            <img
-                            src={row?.image}
-                            alt={row.name}
-                            height="50"
-                            style={{marginBottom: 10}}
-                            />
-                            <div style={{display: 'flex', flexDirection: "column"}}>
-                              <span
-                              style={{textTransform: 'uppercase', fontSize: 22}}
-                              >
-                                {row.symbol}
-                              </span>
-                              <span style={{color: 'darkgrey'}}>{row.name}</span>
-                            </div>
-                          </TableCell>
-                          <TableCell
-                          align='right'
-                          > 
-                          {symbol + ' '}
-                          {numberWithCommas(row.current_price.toFixed(2))}
-                          </TableCell>
-                          <TableCell
-                          align='right'
-                          style={{
-                            color: profit > 0 ? 'rgb(14, 203, 129)' : 'red', fontWeight: 500
-                          }}
-                          >
-                            {profit && '+'}
-                            {row.price_change_percentage_24h.toFixed(2)}%
-                          </TableCell>
-                          <TableCell align='right'>
-                            {symbol + ' '}
-                            {numberWithCommas(
-                              row.market_cap.toString().slice(0, -6)
-                            )}
-                            M
-                          </TableCell>
-                        </TableRow>
-                      )
-
-                    })}
-                  </TableBody>
-
-                </Table>
-              )
-            }
-          </TableContainer>
-
-          <Pagination 
-          style={{
-            padding: 20,
-            width: '100%',
-            display: 'flex',
-            justifyContent: 'center'
-          }}
-          classes={{ ul: classes.pagination }}
-          count={(handleSearch()?.length / 10).toFixed(0)}
-          onChange={(_, value) => {
-            setPage(value);
-            window.scroll(0, 450);
-          }}
-          />
-        </Container>
-
-    </ThemeProvider>
+    <div className='m-5'>
+      {
+      loading ?
+      <>
+      <p className='text-center text-3xl mb-5'>Cryptocurrency Prices by Market Cap </p>
+      <div className='flex justify-center'>
+        <Progress
+          size="sm"
+          isIndeterminate
+          label="Loading all coins..."
+          aria-label="Loading..."
+          className="max-w-md"
+        />
+      </div>
+      </>
+      :
+      <>
+        <p className='text-center text-3xl mb-5'>Cryptocurrency Prices by Market Cap </p>
+        <Table
+          aria-label="Example table with custom cells, pagination and sorting"
+          bottomContent={bottomContent}
+          bottomContentPlacement="outside"
+          selectedKeys={selectedKeys}
+          topContent={topContent}
+          topContentPlacement="outside"
+          onSelectionChange={setSelectedKeys}
+        >
+          <TableHeader columns={headerColumns}>
+            {(column) => (
+              <TableColumn key={column.uid}>
+                {column.name}
+              </TableColumn>
+            )}
+          </TableHeader>
+          <TableBody emptyContent={"No coins found"} items={coins}>
+            {(coin) => (
+              <TableRow 
+              onClick={() => navigate(`/coins/${coin.id}`)}
+              key={coin.id}
+              >
+                {(columnKey) => <TableCell>{renderCell(coin, columnKey)}</TableCell>}
+              </TableRow>
+            )}
+          </TableBody>
+        </Table>
+      </>
+    }
+    </div>
   )
 }

@@ -3,15 +3,15 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Coinpage from "./pages/Coinpage";
 import Rootpage from "./pages/Rootpage";
-import { makeStyles } from "@material-ui/core";
+// import { makeStyles } from "@material-ui/core";
 
 
-const useStyles = makeStyles(() => ({
-  App: {
-    backgroundColor: '#14161a',
-    minHeight: '100vh'
-  }
-}));
+// const useStyles = makeStyles(() => ({
+//   App: {
+//     backgroundColor: '#14161a',
+//     minHeight: '100vh'
+//   }
+// }));
 
 const router = createBrowserRouter([
   {
@@ -29,10 +29,10 @@ const router = createBrowserRouter([
 function App() {
 
 
-  const classes = useStyles();
+  // const classes = useStyles();
 
   return (
-      <div className={classes.App}>
+      <div className="">
         <RouterProvider router={router} />
       </div>
   );

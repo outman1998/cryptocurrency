@@ -1,28 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { makeStyles } from '@material-ui/core';
 import axios from 'axios';
 import {useCurrency} from '../context/context';
 import {TrendingCoins} from '../config/api';
 import AliceCarousel from 'react-alice-carousel';
 import { Link } from 'react-router-dom';
-
-
-const useStyles = makeStyles(() => ({
-    carousel: {
-        height: '50%',
-        display: 'flex',
-        alignItems: 'center'
-      },
-      carouselItem: {
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        cursor: "pointer",
-        textTransform: "uppercase",
-        color: "white",
-      }
-}));
-
 
 export function numberWithCommas(x) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
@@ -31,7 +12,7 @@ export function numberWithCommas(x) {
 export default function Carousel() {
 
     const [trending, setTrending] = useState([]);
-    const classes = useStyles();
+    // const classes = useStyles();
     const {currency, symbol} = useCurrency();
 
 
@@ -67,12 +48,12 @@ export default function Carousel() {
 
         return (
             <Link 
-            className={classes.carouselItem}
+            className="flex flex-col items-center cursor-pointer uppercase text-white"
             to={`/coins/${coin.id}`}>
                 <img 
                 src={coin?.image} 
                 alt={coin.name}
-                height="80"
+                className='h-24'
                 style={{marginBottom: 10 }}
                 />
                 <span>
@@ -90,7 +71,7 @@ export default function Carousel() {
     })
 
   return (
-    <div className={classes.carousel}>
+    <div className="h-1/2 flex items-center mt-10">
         <AliceCarousel 
         mouseTracking 
         infinite

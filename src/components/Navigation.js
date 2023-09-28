@@ -1,22 +1,15 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import { AppBar, Container, MenuItem, Select, Typography, makeStyles, Toolbar } from '@material-ui/core';
 import {useCurrency} from '../context/context';
-
-const useStyles = makeStyles(() => ({
-    title: {
-      flex: 1,
-      color: 'gold',
-      fontFamily: 'montserrat',
-      fontWeight: 'bold',
-      cursor: 'pointer',
-      fontSize: '22px',
-    }
-  }));
+import {Select, SelectItem} from "@nextui-org/react";
 
 export default function Navigation() {
 
-  const classes = useStyles();
+  const [value, setValue] = React.useState(new Set([]));
+
+  const handleSelectionChange = (e) => {
+    setValue(new Set([e.target.value]));
+  };
 
   const navigate = useNavigate();
     
@@ -28,39 +21,32 @@ export default function Navigation() {
 
   console.log(currency);
 
+  const currencies = [
+    {label: "DKK", value: "DKK"},
+    {label: "USD", value: "USD"}
+  ];
+
 
   return (
-    <AppBar style={{
-      backgroundColor: '#14161a', 
-      padding: '10px 0px'
-      }} 
-      position="static">
-        <Container>
-            <Toolbar style={{
-              justifyContent: 'center', 
-              display: 'flex',
-              alignItems: 'center',
-              }}>
-                <Typography onClick={redirectToHome} className={classes.title}>Crypto Hunter
-                </Typography>
+    <div className='flex justify-between items-center mx-5 my-3'>
+      
+      <h1 className='text-[#ffd600] font-bold text-2xl'>Cryptohunter</h1>
 
-                <Select 
-                  variant="outlined" 
-                  style={{
-                    width: 100, 
-                    height: 40, 
-                    marginRight: 15,
-                  }}
-                  value={currency}
-                  onChange={(e) => setCurrency(e.target.value) }
-                >
-                  <MenuItem value={'DKK'}>DKK</MenuItem>
-                  <MenuItem value={'USD'}>USD</MenuItem>
-                </Select>
-            </Toolbar>
-        </Container>
-    </AppBar>
-
+      <Select
+        variant="bordered"
+        label="Currency"
+        selectedKeys={value}
+        className="w-28"
+        onChange={handleSelectionChange}
+      >
+        {currencies.map((currency) => (
+          <SelectItem key={currency.value} value={currency.value}>
+            {currency.label}
+          </SelectItem>
+        ))}
+      </Select>
+      
+    </div>
   )
 
 }
