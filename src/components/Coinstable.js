@@ -6,50 +6,35 @@ import {useNavigate} from 'react-router-dom';
 import {numberWithCommas} from './Carousel';
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, User, Pagination, Progress} from "@nextui-org/react";
 
-export default function Coinstable() {
+export default function Coinstable(props) {
 
+    const [filterValue, setFilterValue] = useState("");
     const [coins, setCoins] = useState([]);
     const [loading, setLoading] = useState(false);
     const {currency, symbol} = useCurrency();
     const navigate = useNavigate();
 
+    /* for the table */
     const INITIAL_VISIBLE_COLUMNS = ["coin", "price", "24h_change", "marketCap"];
+    const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
+    const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
+    const [statusFilter, setStatusFilter] = React.useState("all");
+    // set page to show 20 coins/rows
+    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    // set the page to be first
+    const [page, setPage] = React.useState(1);
+    const [sortDescriptor, setSortDescriptor] = React.useState({
+      column: "age",
+      direction: "ascending",
+    });
 
-    const columns = [
-      {name: "ID", uid: "id", sortable: true},
-      {name: "Coin", uid: "coin", sortable: true},
-      {name: "Name", uid: "name", sortable: true},
-      {name: "Symbol", uid: "symbol", sortable: true},
-      {name: "Price", uid: "price"},
-      {name: "24h change", uid: "24h_change"},
-      {name: "Market cap", uid: "marketCap", sortable: true}
-    ];
+    const hasSearchFilter = Boolean(filterValue);
 
     const statusOptions = [
       {name: "Active", uid: "active"},
       {name: "Paused", uid: "paused"},
       {name: "Vacation", uid: "vacation"},
     ];
-
-    function capitalize(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    }
-    
-
-    const [filterValue, setFilterValue] = React.useState("");
-    const [selectedKeys, setSelectedKeys] = React.useState(new Set([]));
-    const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
-    const [statusFilter, setStatusFilter] = React.useState("all");
-    const [rowsPerPage, setRowsPerPage] = React.useState(20);
-    const [page, setPage] = React.useState(1);
-
-    const hasSearchFilter = Boolean(filterValue);
-
-    const headerColumns = React.useMemo(() => {
-      if (visibleColumns === "all") return columns;
-  
-      return columns.filter((column) => Array.from(visibleColumns).includes(column.uid));
-    }, [visibleColumns]);
 
     const filteredItems = React.useMemo(() => {
       let filteredUsers = [...coins];
@@ -77,41 +62,50 @@ export default function Coinstable() {
       return filteredItems.slice(start, end);
     }, [page, filteredItems, rowsPerPage]);
 
+    const sortedItems = React.useMemo(() => {
+      return [...items].sort((a, b) => {
+        const first = a[sortDescriptor.column];
+        const second = b[sortDescriptor.column];
+        const cmp = first < second ? -1 : first > second ? 1 : 0;
+  
+        return sortDescriptor.direction === "descending" ? -cmp : cmp;
+      });
+    }, [sortDescriptor, items]);
 
-    const renderCell = React.useCallback((user, columnKey) => {
+    const renderCell = React.useCallback((coin, columnKey) => {
 
-      const cellValue = user[columnKey];
-      const profit = user.price_change_percentage_24h > 0;
+      const cellValue = coin[columnKey];
+      const profit = coin.price_change_percentage_24h > 0;
 
       switch (columnKey) {
         case "coin":
           return (
             <User
-              avatarProps={{src: user.image}}
-              description={user.symbol}
-              name={user.name}
+              avatarProps={{src: coin.image}}
+              description={coin.symbol}
+              name={coin.name}
             >
-              {user.name}
+              {coin.name}
             </User>
           );
         case "price":
           return (
             <div className="flex flex-col">
               <p className="text-bold text-small capitalize">
-              {symbol + ' '} {numberWithCommas(user.current_price.toFixed(2))}
+              {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
               </p>
             </div>
           );
         case "24h_change":
           return (
             <p>
-              {profit && '+'} {user.price_change_percentage_24h.toFixed(2)}%
+              {profit && '+'}{coin.price_change_percentage_24h.toFixed(2)}%
             </p>
           );
         case "marketCap":
           return (
             <p>
-              {symbol + ' '} {numberWithCommas(user.market_cap.toString().slice(0, -6))}
+              {symbol + ' '} {numberWithCommas(coin.market_cap.toString().slice(0, -6))}
              </p>
           );
         default:
@@ -161,10 +155,11 @@ export default function Coinstable() {
     const topContent = React.useMemo(() => {
       return (
         <>
-        <div className='flex justify-end'>
+        <div className='flex justify-center'>
         <Input
               isClearable
-              className="w-full sm:max-w-[44%]"
+              className="w-full"
+              size='lg'
               placeholder="Search by name..."
               value={filterValue}
               onClear={() => onClear()}
@@ -208,18 +203,18 @@ export default function Coinstable() {
             color="primary"
             page={page}
             total={pages}
-            onChange={(page) => setPage(page)}
+            onChange={setPage}
           />
         </div>
       );
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className='m-5'>
+    <div className='mx-32 my-10'>
       {
       loading ?
       <>
-      <p className='text-center text-3xl mb-5'>Cryptocurrency Prices by Market Cap </p>
+      <p className='text-center text-3xl mb-5'>Cryptocurrency prices by market cap </p>
       <div className='flex justify-center'>
         <Progress
           size="sm"
@@ -232,7 +227,7 @@ export default function Coinstable() {
       </>
       :
       <>
-        <p className='text-center text-3xl mb-5'>Cryptocurrency Prices by Market Cap </p>
+        <p className='text-center text-3xl mb-5'>Cryptocurrency prices by market cap </p>
         <Table
           aria-label="Example table with custom cells, pagination and sorting"
           bottomContent={bottomContent}
@@ -242,14 +237,14 @@ export default function Coinstable() {
           topContentPlacement="outside"
           onSelectionChange={setSelectedKeys}
         >
-          <TableHeader columns={headerColumns}>
+          <TableHeader columns={props.columns}>
             {(column) => (
-              <TableColumn key={column.uid}>
+              <TableColumn className='text-black text-lg' key={column.uid}>
                 {column.name}
               </TableColumn>
             )}
           </TableHeader>
-          <TableBody emptyContent={"No coins found"} items={coins}>
+          <TableBody emptyContent={"No coins found"} items={sortedItems}>
             {(coin) => (
               <TableRow 
               onClick={() => navigate(`/coins/${coin.id}`)}

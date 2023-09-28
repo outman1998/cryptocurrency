@@ -71,7 +71,7 @@ export default function Carousel() {
     })
 
   return (
-    <div className="h-1/2 flex items-center mt-10">
+    <div className="h-1/2 flex items-center mt-14 mb-5">
         <AliceCarousel 
         mouseTracking 
         infinite

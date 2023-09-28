@@ -35,6 +35,7 @@ export default function Navigation() {
       <Select
         variant="bordered"
         label="Currency"
+        placeholder={currency}
         selectedKeys={value}
         className="w-28"
         onChange={handleSelectionChange}
