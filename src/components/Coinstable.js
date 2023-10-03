@@ -20,7 +20,7 @@ export default function Coinstable(props) {
     const [visibleColumns, setVisibleColumns] = React.useState(new Set(INITIAL_VISIBLE_COLUMNS));
     const [statusFilter, setStatusFilter] = React.useState("all");
     // set page to show 20 coins/rows
-    const [rowsPerPage, setRowsPerPage] = React.useState(5);
+    const [rowsPerPage, setRowsPerPage] = React.useState(10);
     // set the page to be first
     const [page, setPage] = React.useState(1);
     const [sortDescriptor, setSortDescriptor] = React.useState({
@@ -160,7 +160,7 @@ export default function Coinstable(props) {
               isClearable
               className="w-full"
               size='lg'
-              placeholder="Search by name..."
+              placeholder="Search after coin..."
               value={filterValue}
               onClear={() => onClear()}
               onValueChange={onSearchChange}
@@ -175,9 +175,9 @@ export default function Coinstable(props) {
                 className="bg-transparent outline-none text-default-400 text-small"
                 onChange={onRowsPerPageChange}
               >
-                <option value="5">5</option>
                 <option value="10">10</option>
                 <option value="15">15</option>
+                <option value="20">20</option>
               </select>
             </label>
           </div>
@@ -204,30 +204,40 @@ export default function Coinstable(props) {
             page={page}
             total={pages}
             onChange={setPage}
-          />
+            variant="dark"
+            classNames={{
+              item: "w-8 h-8 text-small rounded-none bg-transparent text-white",
+              cursor:
+                "bg-neutral-300 text-black font-bold",
+                controls: "bg-blue-500"
+            }}
+            />
         </div>
       );
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className='mx-32 my-10'>
+    <div className='px-32 py-10 bg-sky-950'>
       {
       loading ?
       <>
-      <p className='text-center text-3xl mb-5'>Cryptocurrency prices by market cap </p>
+      <p className='text-center text-3xl text-white mb-5'>Cryptocurrency prices by market cap </p>
       <div className='flex justify-center'>
         <Progress
           size="sm"
           isIndeterminate
           label="Loading all coins..."
           aria-label="Loading..."
-          className="max-w-md"
+          className="max-w-md text-white"
+          classNames={{
+            indicator: "bg-[#ffd600]",
+          }}
         />
       </div>
       </>
       :
-      <>
-        <p className='text-center text-3xl mb-5'>Cryptocurrency prices by market cap </p>
+      <div className='bg-sky-950'>
+        <p className='text-center text-white text-3xl pb-5'>Cryptocurrency prices by market cap </p>
         <Table
           aria-label="Example table with custom cells, pagination and sorting"
           bottomContent={bottomContent}
@@ -236,10 +246,12 @@ export default function Coinstable(props) {
           topContent={topContent}
           topContentPlacement="outside"
           onSelectionChange={setSelectedKeys}
+          removeWrapper
+          className=''
         >
           <TableHeader columns={props.columns}>
             {(column) => (
-              <TableColumn className='text-black text-lg' key={column.uid}>
+              <TableColumn className='text-black bg-[#ffd600] text-lg' key={column.uid}>
                 {column.name}
               </TableColumn>
             )}
@@ -247,6 +259,7 @@ export default function Coinstable(props) {
           <TableBody emptyContent={"No coins found"} items={sortedItems}>
             {(coin) => (
               <TableRow 
+              className=' text-white hover:bg-sky-900 border-white border-b-1'
               onClick={() => navigate(`/coins/${coin.id}`)}
               key={coin.id}
               >
@@ -255,7 +268,7 @@ export default function Coinstable(props) {
             )}
           </TableBody>
         </Table>
-      </>
+      </div>
     }
     </div>
   )

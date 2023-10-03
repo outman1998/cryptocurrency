@@ -28,16 +28,17 @@ export default function Navigation() {
 
 
   return (
-    <div className='flex justify-between items-center mx-5 my-3'>
+    <div className='flex bg-sky-950	justify-between items-center px-5 py-3'>
       
       <h1 className='text-[#ffd600] font-bold text-2xl'>Cryptohunter</h1>
 
       <Select
         variant="bordered"
+        color='white'
         label="Currency"
         placeholder={currency}
         selectedKeys={value}
-        className="w-28"
+        className="w-28 text-white"
         onChange={handleSelectionChange}
       >
         {currencies.map((currency) => (
