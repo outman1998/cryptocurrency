@@ -9,14 +9,6 @@ import { chartDays } from "../config/data";
 import SelectButton from "./SelectButton";
 import Chart from 'chart.js/auto';
 
-// const darkTheme = createTheme({
-//   palette: {
-//     primary: {
-//       main: '#fff',
-//     },
-//     type: 'dark',
-//   },
-// });
 
 // const useStyles = makeStyles((theme) => ({    
 //   container: {
@@ -65,7 +57,7 @@ export default function CoinInfo({coin}) {
 
   return (
     <>
-      <div className="">
+      <div className="px-5 mb-5 lg:mb-0">
         
           {!historicData ? (
             // <CircularProgress

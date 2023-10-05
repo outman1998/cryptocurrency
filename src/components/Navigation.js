@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useCurrency} from '../context/context';
-import {Select, SelectItem} from "@nextui-org/react";
+import {Select, SelectItem, Link} from "@nextui-org/react";
 
 export default function Navigation() {
 
@@ -28,13 +28,16 @@ export default function Navigation() {
 
 
   return (
-    <div className='flex bg-sky-950	justify-between items-center px-5 py-3'>
+    <div className='flex bg-sky-950	justify-between items-center px-5 py-3 shadow-lg'>
       
-      <h1 className='text-[#ffd600] font-bold text-2xl'>Cryptohunter</h1>
+      <h1>
+        <Link href='/' className='text-[#ffd600] font-bold text-2xl'>cryptoHunter</Link>
+      </h1>
 
       <Select
         variant="bordered"
-        color='white'
+        color='black'
+        size='sm'
         label="Currency"
         placeholder={currency}
         selectedKeys={value}

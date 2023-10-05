@@ -4,62 +4,9 @@ import { useParams } from 'react-router-dom';
 import {useCurrency} from '../context/context';
 import axios from 'axios';
 import {SingleCoin} from '../config/api';
-// import { LinearProgress, makeStyles, Typography } from '@material-ui/core';
 import CoinInfo from '../components/CoinInfo';
 import ReactHtmlParser from "react-html-parser";
 import { numberWithCommas } from '../components/Carousel';
-
-
-// const useStyles = makeStyles((theme) => ({
-//   container: {
-//     display: "flex",
-//     [theme.breakpoints.down("md")]: {
-//       flexDirection: "column",
-//       alignItems: "center",
-//     },
-//   },
-//   sidebar: {
-//     width: "30%",
-//     [theme.breakpoints.down("md")]: {
-//       width: "100%",
-//     },
-//     display: "flex",
-//     flexDirection: "column",
-//     alignItems: "center",
-//     marginTop: 25,
-//     borderRight: "2px solid grey",
-//   },
-//   heading: {
-//     fontWeight: "bold",
-//     marginBottom: 20,
-//     fontFamily: "Montserrat",
-//   },
-//   description: {
-//     width: "100%",
-//     fontFamily: "Montserrat",
-//     padding: 25,
-//     paddingBottom: 15,
-//     paddingTop: 0,
-//     textAlign: "justify",
-//   },
-//   marketData: {
-//     alignSelf: "start",
-//     padding: 25,
-//     paddingTop: 10,
-//     width: "100%",
-//     [theme.breakpoints.down("md")]: {
-//       display: "flex",
-//       justifyContent: "space-around",
-//     },
-//     [theme.breakpoints.down("sm")]: {
-//       flexDirection: "column",
-//       alignItems: "center",
-//     },
-//     [theme.breakpoints.down("xs")]: {
-//       alignItems: "start",
-//     },
-//   },
-// }));
 
 export default function Coinpage() {
 
@@ -84,46 +31,45 @@ export default function Coinpage() {
 
   console.log(coin);
 
-  // const classes = useStyles();
-
   if (!coin) return <div style={{backgroundColor: 'gold'}} />
 
   return (
-    <div className="" style={{color: 'white'}}>
-      <div className="">
+    <div className="lg:flex md:items-center" style={{color: 'white'}}>
+      <div className="w-30 md:w-full flex flex-col items-center border-r-2 border-gray-400">
         <img 
         src={coin?.image.large}
         alt={coin?.name}
         height="200"
-        style={{marginBottom: 20}} 
+        className='h-[200px] mb-5'
         />
         <div 
         variant="h3" 
-        className="">
+        className="font-bold text-6xl mb-5 font-montserrat">
           {coin?.name}
         </div>
-        <div variant="subtitle1" className="">
+        <div variant="subtitle1" className="w-full font-montserrat text-justify px-5 text-lg">
           {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
         </div>
 
-        <div className="">
+        <div className="self-start p-25 pt-5 w-full md:flex md:justify-around sm:flex-col sm:items-center xs:items-start">
           <span style={{display: 'flex'}}>
-            <div variant='h5' className="">
+            <div className="font-bold pl-5 mb-5 text-xl font-montserrat">
               Rank:
             </div>
             &nbsp; &nbsp;
-            <div variant='h5' style={{fontFamily: 'Montserrat'}}>
+            <div className='text-2xl' style={{fontFamily: 'Montserrat'}}>
               {numberWithCommas(coin?.market_cap_rank)}
             </div>
           </span>
 
           <span style={{display: 'flex'}}>
-            <div variant='h5' className="">
+            <div variant='h5' className="font-bold mb-5 font-montserrat pl-5 text-xl">
               Current Price:
             </div>
             &nbsp; &nbsp;
             <div 
               variant='h5' 
+              className='text-2xl'
               style={{fontFamily: 'Montserrat'}}
             >     
             {symbol + ' '}          
@@ -134,12 +80,13 @@ export default function Coinpage() {
           <span style={{ display: "flex" }}>
             <div 
             variant="h5" 
-            className="">
+            className="font-bold mb-20 font-montserrat pl-5 text-xl">
               Market Cap:
             </div>
             &nbsp; &nbsp;
             <div
               variant="h5"
+              className='text-2xl'
               style={{
                 fontFamily: "Montserrat",
               }}

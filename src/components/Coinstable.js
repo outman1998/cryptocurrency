@@ -206,10 +206,9 @@ export default function Coinstable(props) {
             onChange={setPage}
             variant="dark"
             classNames={{
-              item: "w-8 h-8 text-small rounded-none bg-transparent text-white",
-              cursor:
-                "bg-neutral-300 text-black font-bold",
-                controls: "bg-blue-500"
+              item: "w-8 h-8 text-small rounded-none bg-transparent text-[#ffd600]",
+              cursor: "bg-[#ffd600] text-black font-bold",
+  
             }}
             />
         </div>
@@ -217,7 +216,7 @@ export default function Coinstable(props) {
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className='px-32 py-10 bg-sky-950'>
+    <div className=' px-10 py-10 lg:px-24 bg-sky-950'>
       {
       loading ?
       <>
@@ -249,7 +248,7 @@ export default function Coinstable(props) {
           removeWrapper
           className=''
         >
-          <TableHeader columns={props.columns}>
+          <TableHeader className='py-10' columns={props.columns}>
             {(column) => (
               <TableColumn className='text-black bg-[#ffd600] text-lg' key={column.uid}>
                 {column.name}
@@ -263,7 +262,7 @@ export default function Coinstable(props) {
               onClick={() => navigate(`/coins/${coin.id}`)}
               key={coin.id}
               >
-                {(columnKey) => <TableCell>{renderCell(coin, columnKey)}</TableCell>}
+                {(columnKey) => <TableCell className='py-5'>{renderCell(coin, columnKey)}</TableCell>}
               </TableRow>
             )}
           </TableBody>
