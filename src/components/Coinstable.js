@@ -160,7 +160,7 @@ export default function Coinstable(props) {
               isClearable
               className="w-full"
               size='lg'
-              placeholder="Search after coin..."
+              placeholder="Search for a crypto currency..."
               value={filterValue}
               onClear={() => onClear()}
               onValueChange={onSearchChange}
@@ -200,15 +200,13 @@ export default function Coinstable(props) {
             isCompact
             showControls
             showShadow
-            color="primary"
             page={page}
             total={pages}
             onChange={setPage}
-            variant="dark"
+            variant='dark'
             classNames={{
-              item: "w-8 h-8 text-small rounded-none bg-transparent text-[#ffd600]",
-              cursor: "bg-[#ffd600] text-black font-bold",
-  
+              item: "w-8 h-8 text-small rounded-none bg-transparent text-white",
+              cursor: "bg-[#ffd600] text-[#072f49] font-bold",
             }}
             />
         </div>
@@ -216,7 +214,7 @@ export default function Coinstable(props) {
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className=' px-10 py-10 lg:px-24 bg-sky-950'>
+    <div className=' pt-10 px-5 lg:px-24 bg-sky-950'>
       {
       loading ?
       <>
@@ -229,7 +227,7 @@ export default function Coinstable(props) {
           aria-label="Loading..."
           className="max-w-md text-white"
           classNames={{
-            indicator: "bg-[#ffd600]",
+            indicator: "bg-[#cfb52b]",
           }}
         />
       </div>
@@ -258,11 +256,11 @@ export default function Coinstable(props) {
           <TableBody emptyContent={"No coins found"} items={sortedItems}>
             {(coin) => (
               <TableRow 
-              className=' text-white hover:bg-sky-900 border-white border-b-1'
+              className=' text-white hover:bg-sky-900 border-b-1 border-sky-900 cursor-pointer'
               onClick={() => navigate(`/coins/${coin.id}`)}
               key={coin.id}
               >
-                {(columnKey) => <TableCell className='py-5'>{renderCell(coin, columnKey)}</TableCell>}
+                {(columnKey) => <TableCell className='py-5 text-xs md:text-sm'>{renderCell(coin, columnKey)}</TableCell>}
               </TableRow>
             )}
           </TableBody>

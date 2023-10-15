@@ -38,7 +38,7 @@ export default function Carousel() {
             items: 2,
         },
         512: {
-            items: 4
+            items: 3
         }
     };
 
@@ -53,7 +53,7 @@ export default function Carousel() {
                 <img 
                 src={coin?.image} 
                 alt={coin.name}
-                className='h-24'
+                className='h-16 lg:h-24'
                 style={{marginBottom: 10 }}
                 />
                 <span>

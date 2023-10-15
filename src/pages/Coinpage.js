@@ -35,7 +35,7 @@ export default function Coinpage() {
 
   return (
     <div className="lg:flex md:items-center" style={{color: 'white'}}>
-      <div className="w-30 md:w-full flex flex-col items-center border-r-2 border-gray-400">
+      <div className="md:w-full mt-5 flex flex-col items-center border-r-2 border-gray-400">
         <img 
         src={coin?.image.large}
         alt={coin?.name}
@@ -51,7 +51,7 @@ export default function Coinpage() {
           {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
         </div>
 
-        <div className="self-start p-25 pt-5 w-full md:flex md:justify-around sm:flex-col sm:items-center xs:items-start">
+        <div className="self-start pt-5 w-full md:flex md:justify-around sm:flex-col sm:items-center md:items-center lg:items-start xs:items-start">
           <span style={{display: 'flex'}}>
             <div className="font-bold pl-5 mb-5 text-xl font-montserrat">
               Rank:
