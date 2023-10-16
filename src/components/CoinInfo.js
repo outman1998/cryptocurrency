@@ -3,14 +3,36 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { HistoricalChart } from '../config/api';
 import { useCurrency } from '../context/context';
+// import { CircularProgress, createTheme, makeStyles, ThemeProvider } from "@material-ui/core";
 import {Line} from 'react-chartjs-2';
 import { chartDays } from "../config/data";
+import SelectButton from "./SelectButton";
+import Chart from 'chart.js/auto';
+
+
+// const useStyles = makeStyles((theme) => ({    
+//   container: {
+//   width: "75%",
+//   display: "flex",
+//   flexDirection: "column",
+//   alignItems: "center",
+//   justifyContent: "center",
+//   marginTop: 25,
+//   padding: 40,
+//   [theme.breakpoints.down("md")]: {
+//     width: "100%",
+//     marginTop: 0,
+//     padding: 20,
+//     paddingTop: 0,
+//   },
+// },
+// }));
 
 export default function CoinInfo({coin}) {
 
   const [historicData, setHistoricData] = useState();
   const [days, setDays] = useState(1);
-  const {currency} = useCurrency();
+  const {currency, symbol} = useCurrency();
   const [flag,setflag] = useState(false);
 
 
