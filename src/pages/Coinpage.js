@@ -5,7 +5,6 @@ import {useCurrency} from '../context/context';
 import axios from 'axios';
 import {SingleCoin} from '../config/api';
 import CoinInfo from '../components/CoinInfo';
-import ReactHtmlParser from "react-html-parser";
 import { numberWithCommas } from '../components/Carousel';
 
 export default function Coinpage() {
@@ -48,7 +47,7 @@ export default function Coinpage() {
           {coin?.name}
         </div>
         <div variant="subtitle1" className="w-full font-montserrat text-justify px-5 text-lg">
-          {ReactHtmlParser(coin?.description.en.split(". ")[0])}.
+          {coin?.description.en.split(". ")[0]}.
         </div>
 
         <div className="self-start pt-5 w-full md:flex md:justify-around sm:flex-col sm:items-center md:items-center lg:items-start xs:items-start">
