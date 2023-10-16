@@ -1,19 +1,10 @@
-// import { Container, makeStyles, Typography } from '@material-ui/core';
 import React from 'react';
 import Carousel from './Carousel';
 
 const url = 'https://raw.githubusercontent.com/piyush-eon/react-crypto-tracker/master/public/banner2.jpg';
 
 
-// const useStyles = makeStyles(() => ({
-//     banner: {
-//         backgroundImage: `url(${url})`,
-//       }
-// }))
-
 export default function Banner() {
-
-  // const classes = useStyles();
 
   return (
     <div style={{backgroundImage: `url(${url})`}} className="pt-10 pb-10">
