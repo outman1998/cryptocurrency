@@ -6,6 +6,7 @@ import axios from 'axios';
 import {SingleCoin} from '../config/api';
 import CoinInfo from '../components/CoinInfo';
 import { numberWithCommas } from '../components/Carousel';
+// import ReactHtmlParser from "react-html-parser";
 
 export default function Coinpage() {
 

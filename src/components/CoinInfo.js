@@ -5,6 +5,8 @@ import { HistoricalChart } from '../config/api';
 import { useCurrency } from '../context/context';
 import {Line} from 'react-chartjs-2';
 import { chartDays } from "../config/data";
+import SelectButton from "./SelectButton";
+import Chart from 'chart.js/auto';
 
 export default function CoinInfo({coin}) {
 
