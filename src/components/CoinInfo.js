@@ -77,14 +77,14 @@ export default function CoinInfo({coin}) {
             />
             <div className='flex mt-10 w-full justify-between'>
               {chartDays.map((day) => (
-                <div className='div w-[23%]'
+                <div className={`div w-[23%] ${day.value === days ? 'bg-[#cfb52b] text-black rounded' : ''}`}
                   key={day.value}
                   onClick={() => {setDays(day.value);
                     setflag(false);
                   }}
                   selected={day.value === days}
                 >
-                  <div className='border-1 rounded border-[#cfb52b] border-solid border-gold cursor-pointer text-center font-semibold p-2 w-full'>{day.label}</div>
+                  <div className='border-1 rounded border-[#cfb52b] border-solid border-gold cursor-pointer text-center lg:font-semibold p-2 w-full text-sm'>{day.label}</div>
                 </div>
               ))}
             </div>

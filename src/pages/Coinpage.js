@@ -40,36 +40,36 @@ export default function Coinpage() {
         src={coin?.image.large}
         alt={coin?.name}
         height="200"
-        className='h-[200px] mb-5'
+        className='h-[120px] lg:h-[200px] mb-5'
         />
         <div 
         variant="h3" 
-        className="font-bold text-6xl mb-5 font-montserrat">
+        className="font-bold text-4xl lg:text-6xl mb-5 font-montserrat">
           {coin?.name}
         </div>
-        <div variant="subtitle1" className="w-full font-montserrat text-justify px-5 text-lg">
+        <div variant="subtitle1" className="w-full font-montserrat text-justify px-5 text-md lg:text-lg">
           {coin?.description.en.split(". ")[0]}.
         </div>
 
         <div className="self-start pt-5 w-full md:flex md:justify-around sm:flex-col sm:items-center md:items-center lg:items-start xs:items-start">
           <span style={{display: 'flex'}}>
-            <div className="font-bold pl-5 mb-5 text-xl font-montserrat">
+            <div className="font-bold pl-5 mb-5 text-md lg:text-xl font-montserrat">
               Rank:
             </div>
             &nbsp; &nbsp;
-            <div className='text-2xl' style={{fontFamily: 'Montserrat'}}>
+            <div className='text-lg lg:text-2xl' style={{fontFamily: 'Montserrat'}}>
               {numberWithCommas(coin?.market_cap_rank)}
             </div>
           </span>
 
           <span style={{display: 'flex'}}>
-            <div variant='h5' className="font-bold mb-5 font-montserrat pl-5 text-xl">
+            <div variant='h5' className="font-bold mb-5 font-montserrat pl-5 text-md lg:text-xl">
               Current Price:
             </div>
             &nbsp; &nbsp;
             <div 
               variant='h5' 
-              className='text-2xl'
+              className=' text-lg lg:text-2xl'
               style={{fontFamily: 'Montserrat'}}
             >     
             {symbol + ' '}          
@@ -80,13 +80,13 @@ export default function Coinpage() {
           <span style={{ display: "flex" }}>
             <div 
             variant="h5" 
-            className="font-bold mb-20 font-montserrat pl-5 text-xl">
+            className="font-bold mb-20 font-montserrat pl-5 text-md lg:text-xl">
               Market Cap:
             </div>
             &nbsp; &nbsp;
             <div
               variant="h5"
-              className='text-2xl'
+              className='text-lg lg:text-2xl'
               style={{
                 fontFamily: "Montserrat",
               }}
