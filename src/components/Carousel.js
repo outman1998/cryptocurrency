@@ -53,7 +53,7 @@ export default function Carousel() {
                 <img 
                 src={coin?.image} 
                 alt={coin.name}
-                className='h-16 lg:h-24'
+                className='h-12 lg:h-24'
                 style={{marginBottom: 10 }}
                 />
                 <span>
@@ -62,7 +62,7 @@ export default function Carousel() {
                     <span style={{color: profit > 0 ? "rgb(12, 203, 129)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% </span>
                 </span>
 
-                <span style={{fontSize: 22, fontWeight: 500}}>
+                <span className='text-md lg:Text-lg'>
                     {symbol + ' '} 
                     {numberWithCommas(coin?.current_price.toFixed(2))} 
                 </span>

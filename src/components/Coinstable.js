@@ -214,11 +214,11 @@ export default function Coinstable(props) {
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className=' pt-10 px-5 lg:px-24 bg-sky-950'>
+    <div className=' pt-10 lg:px-24 bg-sky-950'>
       {
       loading ?
       <>
-      <p className='text-center text-3xl text-white mb-5'>Cryptocurrency prices by market cap </p>
+      <p className='text-center text-xl lg:text-3xl text-white mb-5'>Cryptocurrency prices by market cap </p>
       <div className='flex justify-center'>
         <Progress
           size="sm"
@@ -233,8 +233,8 @@ export default function Coinstable(props) {
       </div>
       </>
       :
-      <div className='bg-sky-950'>
-        <p className='text-center text-white text-3xl pb-5'>Cryptocurrency prices by market cap </p>
+      <div className='bg-sky-950 overflow-x-auto px-2'>
+        <p className='text-center text-white text-md lg:text-3xl pb-5'>Cryptocurrency prices by market cap </p>
         <Table
           aria-label="Example table with custom cells, pagination and sorting"
           bottomContent={bottomContent}
@@ -244,11 +244,11 @@ export default function Coinstable(props) {
           topContentPlacement="outside"
           onSelectionChange={setSelectedKeys}
           removeWrapper
-          className=''
+          className='overflow-auto	'
         >
           <TableHeader className='py-10' columns={props.columns}>
             {(column) => (
-              <TableColumn className='text-black bg-[#ffd600] text-lg' key={column.uid}>
+              <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>
                 {column.name}
               </TableColumn>
             )}
@@ -260,7 +260,7 @@ export default function Coinstable(props) {
               onClick={() => navigate(`/coins/${coin.id}`)}
               key={coin.id}
               >
-                {(columnKey) => <TableCell className='py-5 text-xs md:text-sm'>{renderCell(coin, columnKey)}</TableCell>}
+                {(columnKey) => <TableCell className='text-xs md:text-sm'>{renderCell(coin, columnKey)}</TableCell>}
               </TableRow>
             )}
           </TableBody>

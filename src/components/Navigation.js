@@ -34,7 +34,7 @@ export default function Navigation() {
         <Link href='/' className='text-[#ffd600] font-bold text-2xl'>cryptoHunter</Link>
       </h1>
 
-      <Select
+      {/* <Select
         variant="bordered"
         color='black'
         size='sm'
@@ -49,7 +49,7 @@ export default function Navigation() {
             {currency.label}
           </SelectItem>
         ))}
-      </Select>
+      </Select> */}
       
     </div>
   )
