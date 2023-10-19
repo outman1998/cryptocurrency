@@ -36,13 +36,13 @@ export default function Navigation() {
       </h1>
 
       <Select
-        variant="bordered"
-        color='black'
+        variant="faded"
+        color='white'
         size='sm'
         label="Currency"
         placeholder={currency}
         // selectedKeys={value}
-        className="w-28 text-white"
+        className="w-28 text-[#072f49]"
         onChange={handleSelectionChange}
       >
         {currencies.map((currency) => (
