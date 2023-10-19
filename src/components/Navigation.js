@@ -8,7 +8,8 @@ export default function Navigation() {
   const [value, setValue] = React.useState(new Set([]));
 
   const handleSelectionChange = (e) => {
-    setValue(new Set([e.target.value]));
+    // setValue(new Set([e.target.value]));
+    setCurrency(e.target.value)
   };
 
   const navigate = useNavigate();
@@ -40,7 +41,7 @@ export default function Navigation() {
         size='sm'
         label="Currency"
         placeholder={currency}
-        selectedKeys={value}
+        // selectedKeys={value}
         className="w-28 text-white"
         onChange={handleSelectionChange}
       >

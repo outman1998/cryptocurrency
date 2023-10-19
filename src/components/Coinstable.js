@@ -112,7 +112,7 @@ export default function Coinstable(props) {
           return cellValue;
       }
 
-    }, []);
+    }, [symbol]);
 
   const onRowsPerPageChange = React.useCallback((e) => {
     setRowsPerPage(Number(e.target.value));
