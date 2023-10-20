@@ -33,7 +33,10 @@ export default function Trending() {
         switch (columnKey) {
           case "coin":
             return (
-                <p> {coin.id} </p>
+                <>
+                <p className='font-bold'> {coin.id} </p>
+                <p className='font-light'>{coin.symbol}</p>
+                </>
             );
           case "price":
             return (
@@ -41,19 +44,24 @@ export default function Trending() {
                 {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
                 </p>            
                 );
-          case "24h change":
+          case "24h_change":
             const profit = coin?.price_change_percentage_24h >= 0;
 
             return (
                 <p>
-                <span style={{color: profit > 0 ? "rgb(12, 203, 129)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% 
+                <span style={{color: profit > 0 ? "rgb(255, 214, 1)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% 
                 </span>
-                <p>hej</p>
                 </p>
+            );
+        case "marketCap":
+            return (
+                <p>
+                {symbol + ' '} {numberWithCommas(coin.market_cap.toString().slice(0, -6))}
+                </p>            
             );
           case "actions":
             return (
-                <Button>Hej</Button>
+                <Button className='bg-[#ffd600] rounded-lg'>Trade</Button>
             );
           default:
             return cellValue;
@@ -64,12 +72,14 @@ export default function Trending() {
         {name: "Coin", uid: "coin"},
         {name: "Price", uid: "price"},
         {name: "24h change", uid: "24h_change"},
-        {name: "Market cap", uid: "marketCap"}
+        {name: "Market cap", uid: "marketCap"},
+        {name: "actions", uid: "actions"}
+
       ];
 
   return (
     <div className='my-10 mx-10'>
-        <Table removeWrapper aria-label="Example static collection table">
+        <Table removeWrapper hideHeader className='lg:w-1/2 m-auto'>
       <TableHeader  columns={columns}>
       {(column) => (
               <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>
@@ -79,7 +89,7 @@ export default function Trending() {
       </TableHeader>
       <TableBody items={trending}>
         {(coin) => (
-            <TableRow key={coin.id}>
+            <TableRow className='border-b-1 border-sky-900 cursor-pointer' key={coin.id}>
             {(columnKey) => <TableCell>{renderCell(coin, columnKey)}</TableCell>}
             </TableRow>
         )}
