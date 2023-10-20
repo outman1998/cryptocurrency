@@ -218,7 +218,7 @@ export default function Coinstable(props) {
       {
       loading ?
       <>
-      <p className='text-center text-xl lg:text-3xl text-white mb-5'>Your crypto journey starts here</p>
+      <p className='text-center text-xl lg:text-3xl text-white mb-5'>Discover all your favourite crypto's</p>
       <div className='flex justify-center'>
         <Progress
           size="sm"
@@ -234,7 +234,7 @@ export default function Coinstable(props) {
       </>
       :
       <div className='bg-sky-950 overflow-x-auto px-2'>
-        <p className='text-center text-white text-md lg:text-3xl pb-5'>Your crypto journey starts here</p>
+        <p className='text-center text-white text-xl lg:text-3xl pb-5'>Discover all your favourite crypto's</p>
         <Table
           aria-label="Example table with custom cells, pagination and sorting"
           bottomContent={bottomContent}

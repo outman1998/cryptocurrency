@@ -12,7 +12,7 @@ export default function Banner() {
       <div className="h-400 flex flex-col justify-between text-white">
 
         <div className="flex h-40% flex-col justify-center items-center mx-5 lg:mx-20 lg:text-center">
-            <h1 className='font-bold mb-15 font-montserrat text-4xl lg:text-6xl'>Get all the Info regarding your favorite crypto currency</h1>
+            <h1 className='font-bold mb-15 font-montserrat text-4xl lg:text-6xl'>Get all the info regarding your favorite crypto currency</h1>
             <p className='text-darkgrey font-montserrat text-lg lg:text-2xl mt-7 w-full font-semibold'>Buy Bitcoin, Ethereum, and all your favourite crypto</p>
         </div>
 

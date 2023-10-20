@@ -47,7 +47,7 @@ export default function Carousel() {
 
         return (
             <Link 
-            className="flex flex-col items-center cursor-pointer uppercase text-white"
+            className="flex flex-col items-center cursor-pointer uppercase text-white text-center"
             to={`/coins/${coin.id}`}>
                 <img 
                 src={coin?.image} 
