@@ -5,7 +5,7 @@ import {TrendingCoins} from '../config/api';
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button} from "@nextui-org/react";
 import {numberWithCommas} from './Carousel';
 
-export default function Trending() {
+export default function PriceAlertsTable() {
 
     const [trending, setTrending] = useState([]);
     const {currency, symbol} = useCurrency();
@@ -39,30 +39,17 @@ export default function Trending() {
                 </>
             );
           case "price":
-            return (
-                <p className="text-bold text-small capitalize">
-                {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
-                </p>            
-                );
-          case "24h_change":
             const profit = coin?.price_change_percentage_24h >= 0;
 
             return (
-                <p>
-                <span style={{color: profit > 0 ? "rgb(255, 214, 1)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% 
-                </span>
-                </p>
-            );
-        case "marketCap":
-            return (
-                <p>
-                {symbol + ' '} {numberWithCommas(coin.market_cap.toString().slice(0, -6))}
-                </p>            
-            );
-          case "actions":
-            return (
-                <Button className='bg-[#ffd600] rounded-lg'>Trade</Button>
-            );
+                <div>
+                    <p className="text-bold text-small capitalize">
+                    {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
+                    </p>   
+                    <span style={{color: profit > 0 ? "rgb(255, 214, 1)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% 
+                    </span> 
+                </div>        
+                );
           default:
             return cellValue;
         }
@@ -71,14 +58,10 @@ export default function Trending() {
       const columns = [
         {name: "Coin", uid: "coin"},
         {name: "Price", uid: "price"},
-        {name: "24h change", uid: "24h_change"},
-        {name: "Market cap", uid: "marketCap"},
-        {name: "actions", uid: "actions"}
-
       ];
 
   return (
-    <div className='my-10 mx-5 overflow-x-auto'>
+    <div className='overflow-x-auto'>
         <Table removeWrapper hideHeader className='lg:w-1/2 m-auto'>
       <TableHeader  columns={columns}>
       {(column) => (
@@ -87,10 +70,10 @@ export default function Trending() {
               </TableColumn>
             )}
       </TableHeader>
-      <TableBody items={trending.slice(0,5)}>
+      <TableBody items={trending.slice(5,10)}>
         {(coin) => (
-            <TableRow className='border-b-1 border-sky-900 cursor-pointer hover:bg-sky-900' key={coin.id}>
-            {(columnKey) => <TableCell>{renderCell(coin, columnKey)}</TableCell>}
+            <TableRow className='border-b-1 flex justify-between border-sky-800 cursor-pointer' key={coin.id}>
+            {(columnKey) => <TableCell className='px-0'>{renderCell(coin, columnKey)}</TableCell>}
             </TableRow>
         )}
       </TableBody>
