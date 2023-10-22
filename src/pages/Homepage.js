@@ -116,13 +116,13 @@ export default function Homepage() {
           },
         }}
         >
-          <AccordionItem className='text-white' key="1" aria-label="Accordion 1" title="What is crypto?">
+          <AccordionItem className='text-white' key="1" aria-label="Accordion 1" title={<div className="text-white">What is crypto?</div>}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </AccordionItem>
-          <AccordionItem className='text-white' key="2" aria-label="Accordion 2" title="How to buy crypto?">
+          <AccordionItem className='text-white' key="2" aria-label="Accordion 2" title={<div className="text-white">How to buy crypto?</div>}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </AccordionItem>
-          <AccordionItem className='text-white' key="3" aria-label="Accordion 3" title="How to trade crypto?">
+          <AccordionItem className='text-white' key="3" aria-label="Accordion 3" title={<div className="text-white">How to trade crypto?</div>}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </AccordionItem>
         </Accordion>

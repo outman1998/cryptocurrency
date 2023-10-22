@@ -86,7 +86,7 @@ export default function Trending() {
 
   return (
     <div className='my-10 mx-5 overflow-x-auto'>
-        <Table removeWrapper hideHeader className='lg:w-1/2 m-auto'>
+        <Table removeWrapper hideHeader className='lg:w-3/4 m-auto'>
       <TableHeader  columns={columns}>
       {(column) => (
               <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>
@@ -95,7 +95,7 @@ export default function Trending() {
             )}
       </TableHeader>
       <TableBody items={trending.slice(0,5)}>
-        {(coin) => (
+        {(coin, indes, isLast) => (
             <TableRow 
             className='border-b-1 border-sky-900 cursor-pointer hover:bg-sky-900' 
             key={coin.id}
