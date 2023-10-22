@@ -62,7 +62,7 @@ export default function PriceAlertsTable() {
 
   return (
     <div className='overflow-x-auto'>
-        <Table removeWrapper hideHeader className='lg:w-1/2 m-auto'>
+        <Table removeWrapper hideHeader className='m-auto'>
       <TableHeader  columns={columns}>
       {(column) => (
               <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>

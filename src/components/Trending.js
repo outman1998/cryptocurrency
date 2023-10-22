@@ -4,11 +4,13 @@ import axios from 'axios';
 import {TrendingCoins} from '../config/api';
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button} from "@nextui-org/react";
 import {numberWithCommas} from './Carousel';
+import {useNavigate} from 'react-router-dom';
 
 export default function Trending() {
 
     const [trending, setTrending] = useState([]);
     const {currency, symbol} = useCurrency();
+    const navigate = useNavigate();
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
     const fetchTrendingCoins = async () => {
@@ -61,7 +63,12 @@ export default function Trending() {
             );
           case "actions":
             return (
-                <Button className='bg-[#ffd600] rounded-lg'>Trade</Button>
+                <Button  
+                className='bg-[#ffd600] rounded-lg'
+                onClick={() => navigate(`/coins/${coin.id}`)}
+                >
+                  View
+                </Button>
             );
           default:
             return cellValue;
@@ -89,7 +96,10 @@ export default function Trending() {
       </TableHeader>
       <TableBody items={trending.slice(0,5)}>
         {(coin) => (
-            <TableRow className='border-b-1 border-sky-900 cursor-pointer hover:bg-sky-900' key={coin.id}>
+            <TableRow 
+            className='border-b-1 border-sky-900 cursor-pointer hover:bg-sky-900' 
+            key={coin.id}
+            >
             {(columnKey) => <TableCell>{renderCell(coin, columnKey)}</TableCell>}
             </TableRow>
         )}
