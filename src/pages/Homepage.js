@@ -9,6 +9,7 @@ import img1 from '../recurring-buy-84d43a9e3d7cc0459af94e6b63fc130c.webp';
 import PriceAlertsTable from '../components/priceAlertsTable';
 import {Accordion, AccordionItem} from "@nextui-org/react";
 import Footer from '../components/Footer';
+import { TbZoomMoney } from 'react-icons/tb';
 
 const columns = [
   {name: "Coin", uid: "coin"},
@@ -26,7 +27,7 @@ export default function Homepage() {
       <div className=' px-2 text-center pt-20'>
         <p className='text-[#ffd600] lg:text-lg font-bold'>Cryptohunter.com</p>
         <p className='text-4xl lg:text-6xl text-center lg:mx-52 font-bold'>Buy Bitcoin, Ethereum and 98+ cryptocurrencies</p>
-        <Button size='lg' className='mt-5 text-white bg-sky-950 border-2 border-sky-800 font-bold text-xl px-12'>Check crypto prices</Button>
+        <Button size='lg' className='mt-5 text-white bg-sky-950 border-2 border-sky-800 font-semibold text-xl px-12'>Check crypto prices <TbZoomMoney className='' /> </Button>
       </div>
       <Trending />
     </div>

@@ -6,9 +6,9 @@ export default function Footer() {
     <div className=''>
 
     <Divider className="mb-5" />
-    <div className='footer text-center lg:flex justify-center lg:justify-between text-sm'>  
+    <div className='mx-5 footer text-center lg:flex justify-center lg:justify-between text-sm'>  
 
-        <div>
+        <div className='mb-2 lg:mb-0'>
         <p>Copyright © 2023 Cryptohunter.com. All rights reserved.</p>
         </div>
 
