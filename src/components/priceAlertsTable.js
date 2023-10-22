@@ -4,11 +4,13 @@ import axios from 'axios';
 import {TrendingCoins} from '../config/api';
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button} from "@nextui-org/react";
 import {numberWithCommas} from './Carousel';
+import {useNavigate} from 'react-router-dom';
 
 export default function PriceAlertsTable() {
 
     const [trending, setTrending] = useState([]);
     const {currency, symbol} = useCurrency();
+    const navigate = useNavigate();
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
     const fetchTrendingCoins = async () => {
@@ -72,7 +74,9 @@ export default function PriceAlertsTable() {
       </TableHeader>
       <TableBody items={trending.slice(5,10)}>
         {(coin) => (
-            <TableRow className='border-b-1 flex justify-between border-sky-800 cursor-pointer' key={coin.id}>
+            <TableRow                 
+            onClick={() => navigate(`/coins/${coin.id}`)}
+            className='border-b-1 flex justify-between border-sky-800 cursor-pointer' key={coin.id}>
             {(columnKey) => <TableCell className='px-0'>{renderCell(coin, columnKey)}</TableCell>}
             </TableRow>
         )}
