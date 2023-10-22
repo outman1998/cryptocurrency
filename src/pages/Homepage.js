@@ -24,8 +24,8 @@ export default function Homepage() {
 
     <div className='bg-sky-950'>
       <div className=' px-2 text-center pt-20'>
-        <p className='text-[#ffd600] font-bold'>Cryptohunter.com</p>
-        <p className='text-3xl lg:text-5xl text-center lg:mx-52 font-bold'>Buy Bitcoin, Ethereum and 98+ cryptocurrencies</p>
+        <p className='text-[#ffd600] lg:text-lg font-bold'>Cryptohunter.com</p>
+        <p className='text-4xl lg:text-6xl text-center lg:mx-52 font-bold'>Buy Bitcoin, Ethereum and 98+ cryptocurrencies</p>
         <Button size='lg' className='mt-5 text-white bg-sky-950 border-2 border-sky-800 font-bold text-xl px-12'>Check crypto prices</Button>
       </div>
       <Trending />
@@ -74,7 +74,7 @@ export default function Homepage() {
 
       <div className='mx-5 my-20 lg:flex'>
         <div className='lg:w-1/3 lg:mr-20 mb-3 lg:mb-0'>
-          <p className='text-3xl font-bold'>Frequently Asked Questions</p>
+          <p className='text-3xl font-bold'>Frequently asked questions</p>
         </div>
         <Accordion  
         variant="shadow" 
@@ -116,13 +116,16 @@ export default function Homepage() {
           },
         }}
         >
-          <AccordionItem className='text-white' key="1" aria-label="Accordion 1" title={<div className="text-white">What is crypto?</div>}>
+          <AccordionItem className='text-white' key="1" aria-label="Accordion 1" title={<div className="text-white font-bold">What is crypto?</div>}>
+          Cryptocurrency is a digital or virtual currency that operates on distributed ledger technology called a blockchain and uses cryptography for security. It is decentralized and operates independently of a central bank.
+          Unlike traditional currencies, cryptocurrencies are not backed by a physical commodity or government, and their value is determined by market demand and supply. Cryptocurrencies can be used to buy goods and services, transfer funds, and trade in markets. Popular cryptocurrencies include Bitcoin, Ethereum, Litecoin, Ripple, and Cronos.
+          <br></br><br></br>
+          Many cryptocurrencies, like Bitcoin, are created through a process called mining, which involves solving complex mathematical equations to validate and record transactions on a blockchain. This mechanism is also called Proof of Work (PoW). Another consensus mechanism that has increased in popularity — as it is more energy efficient — is Proof of Stake (PoS). Instead of mining, PoS relies on network participants validating transactions. Ethereum, the second-largest cryptocurrency, uses this consensus mechanism.
+          </AccordionItem>
+          <AccordionItem className='text-white' key="2" aria-label="Accordion 2" title={<div className="text-white font-bold">How to buy crypto?</div>}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </AccordionItem>
-          <AccordionItem className='text-white' key="2" aria-label="Accordion 2" title={<div className="text-white">How to buy crypto?</div>}>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-          </AccordionItem>
-          <AccordionItem className='text-white' key="3" aria-label="Accordion 3" title={<div className="text-white">How to trade crypto?</div>}>
+          <AccordionItem className='text-white' key="3" aria-label="Accordion 3" title={<div className="text-white font-bold">How to trade crypto?</div>}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </AccordionItem>
         </Accordion>
