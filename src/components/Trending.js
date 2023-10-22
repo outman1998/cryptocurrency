@@ -90,7 +90,7 @@ export default function Trending() {
 
   return (
     <>
-    {loading ? (
+    {!loading ? (
     <div className='my-10 mx-5 overflow-x-auto'>
         <Table removeWrapper hideHeader className='lg:w-3/4 m-auto'>
       <TableHeader  columns={columns}>
@@ -113,11 +113,11 @@ export default function Trending() {
     </Table>
     </div>
     ) :
-    <div className='flex justify-center'>
+    <div className='flex justify-center my-5'>
     <Progress
       size="sm"
       isIndeterminate
-      label="Loading coins..."
+      label="Loading trending coins..."
       aria-label="Loading..."
       className="max-w-md text-white"
       classNames={{
