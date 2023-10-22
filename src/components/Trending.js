@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import {useCurrency} from '../context/context';
 import axios from 'axios';
 import {TrendingCoins} from '../config/api';
-import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button} from "@nextui-org/react";
+import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Button, Progress} from "@nextui-org/react";
 import {numberWithCommas} from './Carousel';
 import {useNavigate} from 'react-router-dom';
 
@@ -11,16 +11,20 @@ export default function Trending() {
     const [trending, setTrending] = useState([]);
     const {currency, symbol} = useCurrency();
     const navigate = useNavigate();
+    const [loading, setLoading] = useState(false);
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
     const fetchTrendingCoins = async () => {
         try {
+            setLoading(true);
             const { data } = await axios.get(TrendingCoins(currency));
             setTrending(data);
-            console.log(trending);
+            setLoading(false);
         } catch(error) {
             console.log(error);
             console.log("fejl!!");
+            setLoading(true);
+            
         }
     };
 
@@ -85,6 +89,8 @@ export default function Trending() {
       ];
 
   return (
+    <>
+    {loading ? (
     <div className='my-10 mx-5 overflow-x-auto'>
         <Table removeWrapper hideHeader className='lg:w-3/4 m-auto'>
       <TableHeader  columns={columns}>
@@ -106,5 +112,19 @@ export default function Trending() {
       </TableBody>
     </Table>
     </div>
+    ) :
+    <div className='flex justify-center'>
+    <Progress
+      size="sm"
+      isIndeterminate
+      label="Loading coins..."
+      aria-label="Loading..."
+      className="max-w-md text-white"
+      classNames={{
+        indicator: "bg-[#cfb52b]",
+      }}
+    />
+  </div>}
+    </>
   )
 }

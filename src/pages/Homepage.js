@@ -94,9 +94,12 @@ export default function Homepage() {
 
 
       <div className='mx-5 my-20 lg:flex'>
-        <div className='lg:w-1/3 lg:mr-20 mb-3 lg:mb-0'>
+
+        <div className='lg:w-1/3 lg:mr-20 mb-5 lg:mb-0'>
           <p className='text-3xl font-bold'>Frequently asked questions</p>
         </div>
+        <div className='lg:w-1/2'>
+
         <Accordion  
         variant="shadow" 
         className='bg-sky-900'
@@ -150,7 +153,11 @@ export default function Homepage() {
             Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
           </AccordionItem>
         </Accordion>
+        <p className='mt-3'>Have more questions? <span className='text-[#ffd600] font-semibold'>Contact Us</span></p>
+        </div>
+
       </div>
+
 
       <Footer />
 

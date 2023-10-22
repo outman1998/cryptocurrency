@@ -18,17 +18,17 @@ export default function Banner() {
             <p className='text-darkgrey font-montserrat text-2xl lg:text-2xl mt-7 w-full font-semibold'>Buy Bitcoin, Ethereum, and all your favourite crypto</p>
 
           <div className=''>
-            <div className='flex text-lg items-center mt-5 lg:mx-20'>
+            <div className='flex text-lg items-baseline mt-5 lg:mx-20'>
               <p className='text-blue-500'>{<AiFillCheckCircle />}</p>
               <p className=' ml-1'>Trusted by more than <span className='text-[#ffd600]'>80M users</span> world-wide</p>
             </div>
 
-            <div className='flex text-lg items-center lg:mx-20'>
+            <div className='flex text-lg items-baseline lg:mx-20'>
               <p className='text-blue-500'>{<AiFillCheckCircle />}</p>
               <p className='ml-1'>Leader in <span className='text-[#ffd600]'>regulatory compliance</span> and <span className='text-[#ffd600]'>security certifications</span></p>
             </div>
 
-            <div className='flex text-lg items-center lg:mx-20'>
+            <div className='flex text-lg items-baseline lg:mx-20'>
               <p className='text-blue-500'>{<AiFillCheckCircle />}</p>
               <p className='ml-1'>The industry’s most comprehensive <span className='text-[#ffd600]'>insurance coverage</span> and <span className='text-[#ffd600]'>verified proof of reserves</span></p>
             </div>
