@@ -56,39 +56,34 @@ export default function Homepage() {
 
         <p className='text-3xl lg:text-5xl text-center lg:mx-20 font-bold mb-10'>Your crypto journey starts here</p>
 
-        <div className='lg:flex lg:space-x-4 md:mx-40'>
+        <div className='lg:flex lg:space-x-4 md:mx-40' style={{ height: '100%'}}>
+  <div className='lg:w-1/2'>
+    <div className='bg-sky-950 h-60 rounded-2xl mx-5 p-4 relative'>
+      <div className='w-1/2 flex flex-col justify-center h-48'>
+        <p className='text-[#ffd600] font-bold text-2xl'>Buy crypto</p>
+        <p className='text-xl font-bold'>Buy BTC, ETH, and other crypto easily via bank transfer.</p>
+      </div>
+      <img src={img} style={{ height: "200px" }} className='absolute bottom-0 right-6' />
+    </div>
 
-          <div className='lg:w-1/2'>
+    <div className='bg-sky-950 rounded-2xl mx-5 my-5 p-4'>
+      <p className='text-[#ffd600] font-bold text-2xl'>Price alerts</p>
+      <p className='font-bold text-xl mb-5'>Be notified on BTC, ETH, XRP prices, and more.</p>
+      <PriceAlertsTable />
+    </div>
+  </div>
 
-            <div className='bg-sky-950 h-60 rounded-2xl mx-5 p-4 relative'>
-              <div className='w-1/2 flex flex-col justify-center h-48'>
-                <p className='text-[#ffd600] font-bold text-2xl'>Buy crypto</p>
-                <p className='text-xl font-bold'>Buy BTC, ETH, and other crypto easily via bank transfer.</p>
-              </div>
-              <img src={img} style={{ height: "200px" }} className='absolute bottom-0 right-6' />
-            </div>
+  <div className='lg:w-1/2 h-full'>
+    <div className='lg:row-span-3 bg-sky-950 rounded-2xl mx-5 p-4 pb-0' style={{ height: '100%' }}>
+      <div className='mb-16'>
+        <p className='text-[#ffd600] font-bold text-2xl'>Recurring Buy</p>
+        <p className='text-xl font-bold'>Grow your portfolio automatically with daily, weekly, or monthly trades.</p>
+      </div>
+      <img src={img1} style={{ height: "350px" }} className='mx-auto' />
+    </div>
+  </div>
+</div>
 
-            <div className='bg-sky-950 rounded-2xl mx-5 my-5 p-4'>
-              <p className='text-[#ffd600] font-bold text-2xl'>Price alerts</p>
-              <p className='font-bold text-xl mb-5'>Be notified on BTC, ETH, XRP prices, and more.</p>
-              <PriceAlertsTable />
-            </div>
-
-          </div>
-
-          <div className='lg:w-1/2 h-full'>
-
-            <div className='lg:row-span-3 bg-sky-950 rounded-2xl mx-5 p-4 pb-0'>
-              <div className='mb-16'>
-                <p className='text-[#ffd600] font-bold text-2xl'>Recurring Buy</p>
-                <p className='text-xl font-bold'>Grow your portfolio automatically with daily, weekly, or monthly trades.</p>
-              </div>
-              <img src={img1} style={{ height: "350px" }} className='mx-auto' />
-            </div>
-
-          </div>
-
-        </div>
     </div>
 
 

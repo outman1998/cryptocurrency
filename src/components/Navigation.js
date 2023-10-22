@@ -32,7 +32,7 @@ export default function Navigation() {
     <div className='flex bg-sky-950	justify-between items-center px-5 py-3 shadow-lg'>
       
       <h1>
-        <Link href='/' className='text-[#ffd600] font-bold text-2xl'>cryptoHunter</Link>
+        <Link onClick={redirectToHome} className='text-[#ffd600] font-bold text-2xl'>cryptoHunter</Link>
       </h1>
 
       <Select
