@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Coinpage from "./pages/Coinpage";
 import Rootpage from "./pages/Rootpage";
+import Cryptopage from "./pages/Cryptopage";
 // import { makeStyles } from "@material-ui/core";
 
 
@@ -19,7 +20,8 @@ const router = createBrowserRouter([
     element: <Rootpage />,
     children: [
       {path: '/', element: <Homepage />},
-      {path: '/coins/:id', element: <Coinpage />}
+      {path: '/coins/:id', element: <Coinpage />},
+      {path: '/Cryptopage', element: <Cryptopage />}
 
     ]
   }
