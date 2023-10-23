@@ -4,8 +4,8 @@ import Coinstable from '../components/Coinstable';
 import { Button } from '@nextui-org/react';
 import Carousel from '../components/Carousel';
 import Trending from '../components/Trending';
-import img from '../buy-bitcoin-ab4b1b0a1cecbb6b0f4a163fe9570327 (1).webp';
-import img1 from '../recurring-buy-84d43a9e3d7cc0459af94e6b63fc130c.webp';
+import img from '../images/recurring-buy-84d43a9e3d7cc0459af94e6b63fc130c.webp'
+import img1 from '../images/buy-bitcoin-ab4b1b0a1cecbb6b0f4a163fe9570327 (1).webp';
 import PriceAlertsTable from '../components/priceAlertsTable';
 import {Accordion, AccordionItem} from "@nextui-org/react";
 import Footer from '../components/Footer';

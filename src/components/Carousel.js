@@ -12,8 +12,7 @@ export function numberWithCommas(x) {
 
 export default function Carousel() {
 
-    const [trending, setTrending] = useState([]);
-    const {currency, symbol} = useCurrency();
+    const {currency, symbol, trending, setTrending} = useCurrency();
     const [loading, setLoading] = useState(false);
 
 

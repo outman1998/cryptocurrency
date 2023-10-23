@@ -8,8 +8,7 @@ import {useNavigate} from 'react-router-dom';
 
 export default function PriceAlertsTable() {
 
-    const [trending, setTrending] = useState([]);
-    const {currency, symbol} = useCurrency();
+    const {currency, symbol, trending, setTrending} = useCurrency();
     const navigate = useNavigate();
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 

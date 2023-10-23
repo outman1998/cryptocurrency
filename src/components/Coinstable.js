@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import {CoinList} from '../config/api';
+// import {CoinList} from '../config/api';
 import {useCurrency} from '../context/context';
-import axios from 'axios';
+// import axios from 'axios';
 import {useNavigate} from 'react-router-dom';
 import {numberWithCommas} from './Carousel';
 import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, User, Pagination, Progress} from "@nextui-org/react";
@@ -9,9 +9,9 @@ import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, 
 export default function Coinstable(props) {
 
     const [filterValue, setFilterValue] = useState("");
-    const [coins, setCoins] = useState([]);
-    const [loading, setLoading] = useState(false);
-    const {currency, symbol} = useCurrency();
+    // const [coins, setCoins] = useState([]);
+    // const [loading, setLoading] = useState(false);
+    const {currency, symbol, coins, setCoins, loading, setLoading, fetchCoins} = useCurrency();
     const navigate = useNavigate();
 
     /* for the table */
@@ -134,18 +134,17 @@ export default function Coinstable(props) {
   },[]);
 
     // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
-    const fetchCoins = async () => {
-      try {
-        setLoading(true);
-        const { data } = await axios.get(CoinList(currency));
-        console.log(data);
-        setCoins(data);
-        setLoading(false);
-      } catch(error) {
-        console.log(error); 
-        console.log("fejl!!"); 
-      }
-    };
+    // const fetchCoins = async () => {
+    //   try {
+    //     setLoading(true);
+    //     const { data } = await axios.get(CoinList(currency));
+    //     setCoins(data);
+    //     setLoading(false);
+    //   } catch(error) {
+    //     console.log(error); 
+    //     console.log("fejl!!"); 
+    //   }
+    // };
   
     useEffect(() => {
       fetchCoins();

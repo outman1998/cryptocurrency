@@ -8,8 +8,7 @@ import {useNavigate} from 'react-router-dom';
 
 export default function Trending() {
 
-    const [trending, setTrending] = useState([]);
-    const {currency, symbol} = useCurrency();
+    const {currency, symbol, trending, setTrending} = useCurrency();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
