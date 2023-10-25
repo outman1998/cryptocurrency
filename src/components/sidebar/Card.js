@@ -27,7 +27,7 @@ export default function Carden() {
       <Avatar 
       src={user?.photoURL}
       alt={user?.displayName || user?.email}
-      className="w-40 h-40 text-large cursor-pointer"
+      className="w-40 h-40 text-large cursor-pointer m-auto"
       />
 
       <h2 className="text-black font-bold text-xl mt-2">{user?.email}</h2>

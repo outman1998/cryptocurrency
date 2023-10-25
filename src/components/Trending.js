@@ -8,7 +8,7 @@ import {useNavigate} from 'react-router-dom';
 
 export default function Trending() {
 
-    const {currency, symbol, trending, setTrending} = useCurrency();
+    const {currency, symbol, trending, setTrending, user} = useCurrency();
     const navigate = useNavigate();
     const [loading, setLoading] = useState(false);
 
@@ -65,6 +65,7 @@ export default function Trending() {
                 </p>            
             );
           case "actions":
+            if(user) {
             return (
                 <Button  
                 className='bg-[#ffd600] rounded-lg'
@@ -72,7 +73,7 @@ export default function Trending() {
                 >
                   View
                 </Button>
-            );
+            )};
           default:
             return cellValue;
         }

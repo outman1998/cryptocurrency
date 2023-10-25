@@ -6,13 +6,14 @@ import axios from 'axios';
 import {SingleCoin} from '../config/api';
 import CoinInfo from '../components/CoinInfo';
 import { numberWithCommas } from '../components/Carousel';
+import { Button } from '@nextui-org/react';
 // import ReactHtmlParser from "react-html-parser";
 
 export default function Coinpage() {
 
   const {id} = useParams();
   const [coin, setCoin] = useState();
-  const {currency, symbol} = useCurrency();
+  const {currency, symbol, user} = useCurrency();
 
   const fetchCoin = async () => {
     try {
@@ -80,7 +81,7 @@ export default function Coinpage() {
           <span style={{ display: "flex" }}>
             <div 
             variant="h5" 
-            className="font-bold mb-20 font-montserrat pl-5 text-md lg:text-xl">
+            className="font-bold mb-7 font-montserrat pl-5 text-md lg:text-xl">
               Market Cap:
             </div>
             &nbsp; &nbsp;
@@ -100,7 +101,10 @@ export default function Coinpage() {
               M
             </div>
           </span>
+
         </div>
+
+        {user && <Button className='w-[94%] rounded bg-[#ffd600] mb-5' size='lg'>Add to watchlist</Button>}
 
       </div>
       <CoinInfo coin={coin} />

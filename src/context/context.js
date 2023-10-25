@@ -23,13 +23,14 @@ export default function Context({children}) {
     const [isOpen, setIsOpen] = React.useState(false);
 
     useEffect(() => {
-      onAuthStateChanged(auth, user=> {
+      onAuthStateChanged(auth, (user) => {
         if(user) {
           setUser(user);
         } 
         else {
           setUser(null)
         } 
+        console.log(user);
       })
     }, [])
 
