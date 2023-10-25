@@ -1,36 +1,51 @@
 import React from "react";
-import {Card, CardHeader, CardBody, CardFooter, Divider, Link, Image} from "@nextui-org/react";
+import { useCurrency } from "../../context/context";
+import {Avatar, Button} from "@nextui-org/react";
+import {Card, CardBody} from "@nextui-org/react";
+import { signOut } from "firebase/auth";
+import { auth } from "../../firebase";
 
 export default function Carden() {
+
+  const {user, setAlert} = useCurrency();
+
+  const logOut = () => {
+    console.log("hej");
+    signOut(auth)
+    setAlert({
+      open: true,
+      type: "success",
+      message: "Logout successfull!"
+    })
+  }
+
   return (
-    <Card className="max-w-[400px]">
-      <CardHeader className="flex gap-3">
-        <Image
-          alt="nextui logo"
-          height={40}
-          radius="sm"
-          src="https://avatars.githubusercontent.com/u/86160567?s=200&v=4"
-          width={40}
-        />
-        <div className="flex flex-col">
-          <p className="text-md">NextUI</p>
-          <p className="text-small text-default-500">nextui.org</p>
-        </div>
-      </CardHeader>
-      <Divider/>
+    <>
+
+    <div className="m-auto">
+      <Avatar 
+      src={user?.photoURL}
+      alt={user?.displayName || user?.email}
+      className="w-40 h-40 text-large cursor-pointer"
+      />
+
+      <h2 className="text-black font-bold text-xl mt-2">{user?.email}</h2>
+    </div>
+
+    <div className="watchlist m-5">
+    <Card>
       <CardBody>
-        <p>Make beautiful websites regardless of your design experience.</p>
+        <p className="font-bold text-black m-auto">Watchlist</p>
       </CardBody>
-      <Divider/>
-      <CardFooter>
-        <Link
-          isExternal
-          showAnchorIcon
-          href="https://github.com/nextui-org/nextui"
-        >
-          Visit source code on GitHub.
-        </Link>
-      </CardFooter>
     </Card>
+    </div>
+
+    <div className="fixed bottom-0 left-0 right-0 p-2">
+        <Button onClick={logOut} className="bg-red-400 font-bold text-lg w-full">
+          Log out
+        </Button>
+    </div>
+    </>
+
   );
 }
