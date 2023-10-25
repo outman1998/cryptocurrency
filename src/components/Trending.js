@@ -91,7 +91,7 @@ export default function Trending() {
     <>
     {!loading ? (
     <div className='my-10 mx-5 overflow-x-auto'>
-        <Table removeWrapper hideHeader className='lg:w-3/4 m-auto'>
+        <Table aria-label="Example static collection table" removeWrapper hideHeader className='lg:w-3/4 m-auto'>
       <TableHeader  columns={columns}>
       {(column) => (
               <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>

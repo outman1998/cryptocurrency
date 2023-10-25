@@ -2,8 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import {useCurrency} from '../context/context';
 import {Select, SelectItem, Link} from "@nextui-org/react";
+import Auth from './Authentication/Auth';
+import UserSidebar from './Authentication/UserSidebar';
 
-export default function Navigation() {
+export default function Navigation(props) {
 
   const [value, setValue] = React.useState(new Set([]));
 
@@ -18,9 +20,7 @@ export default function Navigation() {
     navigate('/')
   }
 
-  const {currency, setCurrency} = useCurrency();
-
-  console.log(currency);
+  const {currency, setCurrency, user, setIsOpen} = useCurrency();
 
   const currencies = [
     {label: "DKK", value: "DKK"},
@@ -35,23 +35,27 @@ export default function Navigation() {
         <Link onClick={redirectToHome} className='text-[#ffd600] font-bold text-2xl'>cryptoHunter</Link>
       </h1>
 
-      <Select
-        variant="faded"
-        color='white'
-        size='sm'
-        label="Currency"
-        placeholder={currency}
-        // selectedKeys={value}
-        className="w-28 text-[#072f49]"
-        onChange={handleSelectionChange}
-      >
-        {currencies.map((currency) => (
-          <SelectItem key={currency.value} value={currency.value}>
-            {currency.label}
-          </SelectItem>
-        ))}
-      </Select>
+      <div className='flex items-center'>
+        <Select
+          variant="bordered"
+          color='black'
+          size='sm'
+          label="Currency"
+          placeholder={currency}
+          // selectedKeys={value}
+          className="w-28 text-white mr-3"
+          onChange={handleSelectionChange}
+        >
+          {currencies.map((currency) => (
+            <SelectItem key={currency.value} value={currency.value}>
+              {currency.label}
+            </SelectItem>
+          ))}
+        </Select>
       
+        {user ? <UserSidebar setIsOpen={setIsOpen} /> : <Auth /> }
+      </div>
+
     </div>
   )
 

@@ -16,7 +16,6 @@ export default function PriceAlertsTable() {
         try {
             const { data } = await axios.get(TrendingCoins(currency));
             setTrending(data);
-            console.log(trending);
         } catch(error) {
             console.log(error);
             console.log("fejl!!");
@@ -63,7 +62,7 @@ export default function PriceAlertsTable() {
 
   return (
     <div className='overflow-x-auto'>
-        <Table removeWrapper hideHeader className='m-auto'>
+        <Table aria-label="Example static collection table" removeWrapper hideHeader className='m-auto'>
       <TableHeader  columns={columns}>
       {(column) => (
               <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>

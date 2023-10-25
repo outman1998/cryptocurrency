@@ -11,13 +11,16 @@ import {Accordion, AccordionItem} from "@nextui-org/react";
 import Footer from '../components/Footer';
 import { TbZoomMoney } from 'react-icons/tb';
 import {useNavigate} from 'react-router-dom';
-
+import Drawer from '../components/sidebar/Drawer';
+import Card from '../components/sidebar/Card';
+import { useCurrency } from '../context/context';
 
 
 
 
 export default function Homepage() {
 
+  const {setIsOpen, isOpen} = useCurrency();
   const navigate = useNavigate();
 
   const sendToCryptoPage = () => {
@@ -34,59 +37,62 @@ export default function Homepage() {
 
   return (
     <div className='mb-5 text-white'>
+
+      <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Card />
+      </Drawer>
+
       <Banner />
 
-    <div className='bg-sky-950'>
-      <div className=' px-2 text-center pt-20'>
-        <p className='text-[#ffd600] lg:text-lg font-bold'>Cryptohunter.com</p>
-        <p className='text-4xl lg:text-6xl text-center lg:mx-52 font-bold'>Buy Bitcoin, Ethereum and 98+ cryptocurrencies</p>
-        <Button 
-        size='lg' 
-        className='mt-5 text-white bg-sky-950 border-2 border-sky-800 font-semibold text-xl px-12'
-        onClick={sendToCryptoPage}
-        >
-          Check crypto prices 
-          <TbZoomMoney /> 
-        </Button>
+      <div className='bg-sky-950'>
+        <div className=' px-2 text-center pt-20'>
+          <p className='text-[#ffd600] lg:text-lg font-bold'>Cryptohunter.com</p>
+          <p className='text-4xl lg:text-6xl text-center lg:mx-52 font-bold'>Buy Bitcoin, Ethereum and 98+ cryptocurrencies</p>
+          <Button 
+          size='lg' 
+          className='mt-5 text-white bg-sky-950 border-2 border-sky-800 font-semibold text-xl px-12'
+          onClick={sendToCryptoPage}
+          >
+            Check crypto prices 
+            <TbZoomMoney /> 
+          </Button>
+        </div>
+        <Trending />
       </div>
-      <Trending />
-    </div>
 
-    <div className='bg-sky-900 py-20'>
+      <div className='bg-sky-900 py-20'>
 
-        <p className='text-3xl lg:text-5xl text-center lg:mx-20 font-bold mb-10'>Your crypto journey starts here</p>
+          <p className='text-3xl lg:text-5xl text-center lg:mx-20 font-bold mb-10'>Your crypto journey starts here</p>
 
-        <div className='lg:flex lg:space-x-4 md:mx-40' style={{ height: '100%'}}>
-  <div className='lg:w-1/2'>
-    <div className='bg-sky-950 h-60 rounded-2xl mx-5 p-4 relative'>
-      <div className='w-1/2 flex flex-col justify-center h-48'>
-        <p className='text-[#ffd600] font-bold text-2xl'>Buy crypto</p>
-        <p className='text-xl font-bold'>Buy BTC, ETH, and other crypto easily via bank transfer.</p>
+          <div className='lg:flex lg:space-x-4 md:mx-40' style={{ height: '100%'}}>
+            <div className='lg:w-1/2'>
+              <div className='bg-sky-950 h-60 rounded-2xl mx-5 p-4 relative'>
+                <div className='w-1/2 flex flex-col justify-center h-48'>
+                  <p className='text-[#ffd600] font-bold text-2xl'>Buy crypto</p>
+                  <p className='text-xl font-bold'>Buy BTC, ETH, and other crypto easily via bank transfer.</p>
+                </div>
+                <img src={img} style={{ height: "200px" }} className='absolute bottom-0 right-6' />
+              </div>
+
+              <div className='bg-sky-950 rounded-2xl mx-5 my-5 p-4'>
+                <p className='text-[#ffd600] font-bold text-2xl'>Price alerts</p>
+                <p className='font-bold text-xl mb-5'>Be notified on BTC, ETH, XRP prices, and more.</p>
+                <PriceAlertsTable />
+              </div>
+            </div>
+
+            <div className='lg:w-1/2 h-full'>
+              <div className='lg:row-span-3 bg-sky-950 rounded-2xl mx-5 p-4 pb-0' style={{ height: '100%' }}>
+                <div className='mb-16'>
+                  <p className='text-[#ffd600] font-bold text-2xl'>Recurring Buy</p>
+                  <p className='text-xl font-bold'>Grow your portfolio automatically with daily, weekly, or monthly trades.</p>
+                </div>
+                <img src={img1} style={{ height: "350px" }} className='mx-auto' />
+              </div>
+            </div>
+          </div>
+
       </div>
-      <img src={img} style={{ height: "200px" }} className='absolute bottom-0 right-6' />
-    </div>
-
-    <div className='bg-sky-950 rounded-2xl mx-5 my-5 p-4'>
-      <p className='text-[#ffd600] font-bold text-2xl'>Price alerts</p>
-      <p className='font-bold text-xl mb-5'>Be notified on BTC, ETH, XRP prices, and more.</p>
-      <PriceAlertsTable />
-    </div>
-  </div>
-
-  <div className='lg:w-1/2 h-full'>
-    <div className='lg:row-span-3 bg-sky-950 rounded-2xl mx-5 p-4 pb-0' style={{ height: '100%' }}>
-      <div className='mb-16'>
-        <p className='text-[#ffd600] font-bold text-2xl'>Recurring Buy</p>
-        <p className='text-xl font-bold'>Grow your portfolio automatically with daily, weekly, or monthly trades.</p>
-      </div>
-      <img src={img1} style={{ height: "350px" }} className='mx-auto' />
-    </div>
-  </div>
-</div>
-
-    </div>
-
-
 
       <div className='mx-5 my-20 lg:flex'>
 
@@ -149,16 +155,13 @@ export default function Homepage() {
           </AccordionItem>
         </Accordion>
         <p className='mt-3'>Have more questions? <span className='text-[#ffd600] font-semibold'>Contact Us</span></p>
+
         </div>
 
       </div>
 
-
       <Footer />
 
-      {/* <Coinstable
-      columns={columns}
-      /> */}
     </div>
   )
 }
