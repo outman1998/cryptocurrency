@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {Button, Input} from "@nextui-org/react";
 import { auth } from '../../firebase';
-import { signInWithEmailAndPassword } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import GoogleButton from 'react-google-button';
 
 export default function Login(props) {
 
@@ -34,6 +35,15 @@ export default function Login(props) {
 
   }
 
+  const googleProvider = new GoogleAuthProvider();
+  const signInWithGoogle = () => {
+    signInWithPopup(auth, googleProvider).then(res => {
+
+    });
+
+    props.onClose();
+  }
+
   return (
     <div>
 
@@ -54,6 +64,14 @@ export default function Login(props) {
       <div className='mt-5'>
         <Button onClick={props.onClose} className='mr-3 bg-red-400'>Cancel</Button>
         <Button className='bg-[#ffd600]' onClick={handleSubmit}>Login</Button>
+      </div>
+
+      <div className='mt-5 w-full text-center'>
+        <p className='mb-2 text-[17px] font-bold m-auto'>OR</p>
+        <GoogleButton 
+        style={{width: "100%", outline: "none", borderRadius: "3px"}}
+        onClick={signInWithGoogle}
+        />
       </div>
       {error && <div className="text-red-600 mt-2 text-sm">{error}</div>}
     </div>

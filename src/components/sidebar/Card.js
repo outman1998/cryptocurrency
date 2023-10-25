@@ -7,7 +7,7 @@ import { auth } from "../../firebase";
 
 export default function Carden() {
 
-  const {user, setAlert} = useCurrency();
+  const {user, setAlert, setIsOpen} = useCurrency();
 
   const logOut = () => {
     console.log("hej");
@@ -17,6 +17,7 @@ export default function Carden() {
       type: "success",
       message: "Logout successfull!"
     })
+    setIsOpen(false);
   }
 
   return (
