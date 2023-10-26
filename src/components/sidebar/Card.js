@@ -37,17 +37,15 @@ export default function Carden() {
     <div className="watchlist m-5">
     <Card>
       <CardBody>
-        <p className="font-bold text-black m-auto">Watchlist</p>
-
-        {coins.map((coin) => {
-          if(watchlist.includes(coin.id)) {
-            return (
-              <p>
-                <span> {coin.name} </span>
-              </p>
-            )
-          }
+        <p className="font-bold text-black m-auto text-lg">Watchlist</p>
+        <hr></hr>
+        {watchlist.map((coin) => {
+          // Capitalize the first letter and make the rest lowercase
+          const formattedCoin = coin.charAt(0).toUpperCase() + coin.slice(1).toLowerCase();
+          
+          return <p className="text-center text-md">{formattedCoin}</p>;
         })}
+
       </CardBody>
     </Card>
     </div>
