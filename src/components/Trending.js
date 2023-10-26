@@ -64,18 +64,17 @@ export default function Trending() {
                 {symbol + ' '} {numberWithCommas(coin.market_cap.toString().slice(0, -6))}
                 </p>            
             );
-          case "actions":
-            if(user) {
-            return (
-                <Button  
-                className='bg-[#ffd600] rounded-lg'
-                onClick={() => navigate(`/coins/${coin.id}`)}
+            case "actions":
+              return user ? (
+                <Button
+                  className='bg-[#ffd600] rounded-lg'
+                  onClick={() => navigate(`/coins/${coin.id}`)}
                 >
                   View
                 </Button>
-            )};
-          default:
-            return cellValue;
+              ) : null;
+            default:
+              return cellValue;
         }
       }, [symbol]);
 

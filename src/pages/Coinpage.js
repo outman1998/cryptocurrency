@@ -7,13 +7,14 @@ import {SingleCoin} from '../config/api';
 import CoinInfo from '../components/CoinInfo';
 import { numberWithCommas } from '../components/Carousel';
 import { Button } from '@nextui-org/react';
-// import ReactHtmlParser from "react-html-parser";
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 export default function Coinpage() {
 
   const {id} = useParams();
   const [coin, setCoin] = useState();
-  const {currency, symbol, user} = useCurrency();
+  const {currency, symbol, user, watchlist, setAlert} = useCurrency();
 
   const fetchCoin = async () => {
     try {
@@ -33,6 +34,60 @@ export default function Coinpage() {
   console.log(coin);
 
   if (!coin) return <div style={{backgroundColor: 'gold'}} />
+
+  const inWatchList = watchlist.includes(coin?.id);
+
+  const addToWatchlist = async () => {
+
+    const coinRef = doc(db, "watchlist", user.uid);
+
+    try {
+      await setDoc(coinRef, {
+        coins: watchlist ? [...watchlist, coin?.id] : [coin?.id],
+        });
+        setAlert({
+          open: true,
+          message: `${coin.name} added to the watchlist!`,
+          type: 'succes'
+        })
+    } catch(error) {
+      console.log(error);
+      setAlert({
+        open: true,
+        message: error.message,
+        type: 'error'
+      })
+    }
+  }
+
+  const removeFromWatchlist = async () => {
+
+    const coinRef = doc(db, "watchlist", user.uid);
+
+    try {
+      await setDoc(
+        coinRef, 
+        {
+        coins: watchlist.filter((watchlist) => watchlist !== coin?.id),
+        },
+        {merge: "true"}
+        );
+
+        setAlert({
+          open: true,
+          message: `${coin.name} removed from the watchlist!`,
+          type: 'succes'
+        });
+    } catch(error) {
+      console.log(error);
+      setAlert({
+        open: true,
+        message: error.message,
+        type: 'error'
+      })
+    }
+
+  }
 
   return (
     <div className="lg:flex md:items-center" style={{color: 'white'}}>
@@ -104,7 +159,15 @@ export default function Coinpage() {
 
         </div>
 
-        {user && <Button className='w-[94%] rounded bg-[#ffd600] mb-5' size='lg'>Add to watchlist</Button>}
+        {
+        user && 
+        <Button 
+        onClick={ inWatchList ? removeFromWatchlist : addToWatchlist} 
+        className={`w-[94%] rounded mb-5 ${inWatchList ? 'bg-red-500' : 'bg-[#ffd600]'}`}
+        size='lg'> 
+        {inWatchList ? "Remove from watchlist" : "Add to watchlist"} 
+        </Button>
+        }
 
       </div>
       <CoinInfo coin={coin} />

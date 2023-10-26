@@ -7,7 +7,7 @@ import { auth } from "../../firebase";
 
 export default function Carden() {
 
-  const {user, setAlert, setIsOpen} = useCurrency();
+  const {user, setAlert, setIsOpen, watchlist, coins} = useCurrency();
 
   const logOut = () => {
     console.log("hej");
@@ -19,6 +19,7 @@ export default function Carden() {
     })
     setIsOpen(false);
   }
+  console.log(watchlist);
 
   return (
     <>
@@ -37,6 +38,16 @@ export default function Carden() {
     <Card>
       <CardBody>
         <p className="font-bold text-black m-auto">Watchlist</p>
+
+        {coins.map((coin) => {
+          if(watchlist.includes(coin.id)) {
+            return (
+              <p>
+                <span> {coin.name} </span>
+              </p>
+            )
+          }
+        })}
       </CardBody>
     </Card>
     </div>

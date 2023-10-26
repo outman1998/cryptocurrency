@@ -3,6 +3,8 @@ import axios from 'axios';
 import { CoinList } from '../config/api';
 import { onAuthStateChanged } from 'firebase/auth';
 import { auth } from '../firebase';
+import { doc, onSnapshot, setDoc } from 'firebase/firestore';
+import { db } from '../firebase';
 
 const ctx = createContext();
 
@@ -21,6 +23,7 @@ export default function Context({children}) {
     });
     //for the drawer
     const [isOpen, setIsOpen] = React.useState(false);
+    const [watchlist, setWatchlist] = useState([]);
 
     useEffect(() => {
       onAuthStateChanged(auth, (user) => {
@@ -32,7 +35,25 @@ export default function Context({children}) {
         } 
         console.log(user);
       })
-    }, [])
+    }, []);
+
+    useEffect(() => {
+
+      if(user) {
+        const coinRef = doc(db, "watchlist", user.uid);
+        const unsubscribe = onSnapshot(coinRef, coin=> {
+          if(coin.exists()) {
+            setWatchlist(coin.data().coins);
+          } else {
+            console.log("No items in watchlist");
+          }
+        });
+        return () => {
+          unsubscribe();
+        }
+      }
+
+    }, [user])
 
     const fetchCoins = async () => {
       try {
@@ -69,7 +90,8 @@ export default function Context({children}) {
       setAlert, 
       user,
       setIsOpen,
-      isOpen
+      isOpen,
+      watchlist
     }}>
       {children}
     </ctx.Provider>
