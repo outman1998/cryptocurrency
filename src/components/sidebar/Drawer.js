@@ -1,12 +1,19 @@
 import React from "react";
+import { useCurrency } from "../../context/context";
 
 export default function Drawer({ children, isOpen, setIsOpen }) {
+
+
+  const closeModal = () => {
+    setIsOpen(false)
+  }
+
   return (
     <main
       className={
         " fixed overflow-hidden z-10 bg-gray-900 bg-opacity-25 inset-0 transform ease-in-out " +
         (isOpen
-          ? " transition-opacity opacity-100 duration-500 translate-x-0  "
+          ? " transition-opacity opacity-100 duration-500 translate-x-0 "
           : " transition-all delay-500 opacity-0 translate-x-full  ")
       }
     >
@@ -16,10 +23,10 @@ export default function Drawer({ children, isOpen, setIsOpen }) {
           (isOpen ? " translate-x-0 " : " translate-x-full ")
         }
       >
-        <article className="relative w-screen max-w-lg pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
-          <header className="p-4 font-bold text-lg text-black">Header</header>
-          {children}
-        </article>
+      <article className="relative w-screen max-w-lg pb-10 flex flex-col space-y-6 overflow-y-scroll h-full">
+        <div onClick={closeModal} className="flex justify-end p-4 font-bold text-lg text-black"> <p className="cursor-pointer">X</p> </div>
+        {children}
+      </article>
       </section>
       <section
         className=" w-screen h-full cursor-pointer "
