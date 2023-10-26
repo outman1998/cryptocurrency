@@ -24,7 +24,6 @@ export default function Homepage() {
   const navigate = useNavigate();
 
   const sendToCryptoPage = () => {
-    console.log("hej"); 
     navigate('Cryptopage')
   }
 
@@ -53,7 +52,7 @@ export default function Homepage() {
           className='mt-5 text-white bg-sky-950 border-2 border-sky-800 font-semibold text-xl px-12'
           onClick={sendToCryptoPage}
           >
-            Check crypto prices 
+            Check all crypto prices 
             <TbZoomMoney /> 
           </Button>
         </div>
