@@ -9,12 +9,14 @@ import { numberWithCommas } from '../components/Carousel';
 import { Button } from '@nextui-org/react';
 import { doc, setDoc } from 'firebase/firestore';
 import { db } from '../firebase';
+import Drawer from '../components/sidebar/Drawer';
+import Card from '../components/sidebar/Card';
 
 export default function Coinpage() {
 
   const {id} = useParams();
   const [coin, setCoin] = useState();
-  const {currency, symbol, user, watchlist, setAlert} = useCurrency();
+  const {currency, symbol, user, watchlist, setAlert, setIsOpen, isOpen} = useCurrency();
 
   const fetchCoin = async () => {
     try {
@@ -91,7 +93,12 @@ export default function Coinpage() {
 
   return (
     <div className="lg:flex md:items-center" style={{color: 'white'}}>
-      <div className="md:w-full mt-5 flex flex-col items-center border-r-2 border-gray-400">
+
+      <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
+        <Card />
+      </Drawer>
+
+      <div className="md:w-full mt-10 flex flex-col items-center border-r-2 border-gray-400">
         <img 
         src={coin?.image.large}
         alt={coin?.name}
@@ -103,7 +110,7 @@ export default function Coinpage() {
         className="font-bold text-4xl lg:text-6xl mb-5 font-montserrat">
           {coin?.name}
         </div>
-        <div variant="subtitle1" className="w-full font-montserrat text-justify px-5 text-md lg:text-lg">
+        <div variant="subtitle1" className="w-full font-montserrat text-justify px-5 text-md lg:text-lg overflow-auto">
           {coin?.description.en.split(". ")[0]}.
         </div>
 

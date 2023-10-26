@@ -67,7 +67,7 @@ export default function Homepage() {
           <div className='lg:flex lg:space-x-4 md:mx-40' style={{ height: '100%'}}>
             <div className='lg:w-1/2'>
               <div className='bg-sky-950 h-60 rounded-2xl mx-5 p-4 relative'>
-                <div className='w-1/2 flex flex-col justify-center h-48'>
+                <div className='w-1/2 pr-[20px] md:pr-0 flex flex-col justify-center h-48'>
                   <p className='text-[#ffd600] font-bold text-2xl'>Buy crypto</p>
                   <p className='text-xl font-bold'>Buy BTC, ETH, and other crypto easily via bank transfer.</p>
                 </div>

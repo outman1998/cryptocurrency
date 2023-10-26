@@ -32,7 +32,7 @@ export default function Navigation(props) {
     <div className='flex bg-sky-950	justify-between items-center px-5 py-3 shadow-lg'>
       
       <h1>
-        <Link onClick={redirectToHome} className='text-[#ffd600] font-bold text-md sm:text-lg md:text-2xl'>cryptoHunter</Link>
+        <Link onClick={redirectToHome} className='text-[#ffd600] font-bold text-md sm:text-lg md:text-2xl cursor-pointer'>cryptoHunter</Link>
       </h1>
 
       <div className='flex items-center'>

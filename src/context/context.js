@@ -33,7 +33,7 @@ export default function Context({children}) {
         else {
           setUser(null)
         } 
-        console.log(user);
+        console.log(user.email);
       })
     }, []);
 
