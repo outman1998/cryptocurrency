@@ -5,6 +5,7 @@ import Drawer from '../components/sidebar/Drawer';
 import Card from '../components/sidebar/Card';
 import {Accordion, AccordionItem} from "@nextui-org/react";
 import Footer from '../components/Footer';
+import Bannerforcryptopage from '../components/Bannerforcryptopage';
 
 export default function Cryptopage() {
   
@@ -24,9 +25,11 @@ export default function Cryptopage() {
         <Card />
       </Drawer>
 
-        <Coinstable 
-        columns={columns}
-        />
+      <Bannerforcryptopage />
+
+      <Coinstable 
+      columns={columns}
+      />
 
       <div className='mx-5 my-20 lg:flex'>
 
