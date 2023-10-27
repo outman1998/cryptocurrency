@@ -228,7 +228,7 @@ export default function Coinstable(props) {
           topContentPlacement="outside"
           onSelectionChange={setSelectedKeys}
           removeWrapper
-          className='overflow-auto	'
+          className='overflow-x-auto'
         >
           <TableHeader className='py-10' columns={props.columns}>
             {(column) => (
