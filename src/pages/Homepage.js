@@ -67,12 +67,14 @@ export default function Homepage() {
         </Fade>
 
         </div>
-
+        <Fade bottom delay={600}>
         <Trending />
+        </Fade>
 
       <div className='bg-sky-900 py-20'>
-
-          <p className='text-3xl lg:text-5xl text-center lg:mx-20 font-bold mb-10'>Your crypto journey starts here</p>
+          <Fade bottom delay={600}>
+            <p className='text-3xl lg:text-5xl text-center lg:mx-20 font-bold mb-10'>Your crypto journey starts here</p>
+          </Fade>
 
           <div className='lg:flex lg:space-x-4 md:mx-40' style={{ height: '100%'}}>
             <div className='lg:w-1/2'>
