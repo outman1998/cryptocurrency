@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import {Button, Input} from "@nextui-org/react";
 import { auth } from '../../firebase';
-import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup } from 'firebase/auth';
+import { GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signInWithRedirect } from 'firebase/auth';
 import GoogleButton from 'react-google-button';
 
 export default function Login(props) {
@@ -37,8 +37,7 @@ export default function Login(props) {
 
   const googleProvider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
-    return signInWithPopup(auth, googleProvider);
-    
+    signInWithRedirect(auth, googleProvider);
     props.onClose();
   }
 
