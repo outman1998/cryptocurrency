@@ -39,13 +39,13 @@ export default function Trending() {
           case "coin":
             return (
                 <>
-                <p className='font-bold'> {result} </p>
+                <p className='font-bold text-2xl'> {result} </p>
                 <p className='font-light'>{coin.symbol.toUpperCase()}</p>
                 </>
             );
           case "price":
             return (
-                <p className="text-bold text-small capitalize">
+                <p className="text-bold text-2xl capitalize">
                 {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
                 </p>            
                 );
@@ -53,14 +53,14 @@ export default function Trending() {
             const profit = coin?.price_change_percentage_24h >= 0;
 
             return (
-                <p>
+                <p className='text-2xl'>
                 <span style={{color: profit > 0 ? "rgb(255, 214, 1)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% 
                 </span>
                 </p>
             );
         case "marketCap":
             return (
-                <p>
+                <p className='text-2xl'>
                 {symbol + ' '} {numberWithCommas(coin.market_cap.toString().slice(0, -6))}
                 </p>            
             );
@@ -72,7 +72,7 @@ export default function Trending() {
                 >
                   View
                 </Button>
-              ) : null;
+              ) : <Button className='bg-white px-8 rounded-3xl'>Login To Trade</Button>;
             default:
               return cellValue;
         }
@@ -90,7 +90,7 @@ export default function Trending() {
   return (
     <>
     {!loading ? (
-    <div className='my-10 mx-5 overflow-x-auto'>
+    <div className='py-10 px-5 overflow-x-auto bg-[#061121]'>
         <Table aria-label="Example static collection table" removeWrapper hideHeader className='lg:w-3/4 m-auto'>
       <TableHeader  columns={columns}>
       {(column) => (
@@ -102,7 +102,7 @@ export default function Trending() {
       <TableBody items={trending.slice(0,5)}>
         {(coin, indes, isLast) => (
             <TableRow 
-            className='border-b-1 border-sky-900 cursor-pointer hover:bg-sky-900' 
+            className='border-b-1 border-[#0b1426] cursor-pointer hover:bg-[#0b1426]' 
             key={coin.id}
             >
             {(columnKey) => <TableCell>{renderCell(coin, columnKey)}</TableCell>}
@@ -112,9 +112,8 @@ export default function Trending() {
     </Table>
     </div>
     ) :
-    <div className='flex justify-center my-5'>
+    <div className='pt-10 flex justify-center bg-[#061121]'>
     <Progress
-      size="sm"
       isIndeterminate
       label="Loading trending coins..."
       aria-label="Loading..."

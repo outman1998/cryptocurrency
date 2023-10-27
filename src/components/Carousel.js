@@ -59,12 +59,12 @@ export default function Carousel() {
                 style={{marginBottom: 10 }}
                 />
                 <span>
-                    {coin?.symbol}
+                    { <p className='text-xl'>coin?.symbol</p>}
                     <br></br>
-                    <span style={{color: profit > 0 ? "rgb(12, 203, 129)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% </span>
+                    <span className='text-xl' style={{color: profit > 0 ? "rgb(12, 203, 129)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% </span>
                 </span>
 
-                <span className='text-md lg:Text-lg'>
+                <span className='text-md lg:Text-xl'>
                     {symbol + ' '} 
                     {numberWithCommas(coin?.current_price.toFixed(2))} 
                 </span>
@@ -88,15 +88,14 @@ export default function Carousel() {
             items={items}
             />
         </div> : 
-        <div className='m-auto mt-5'>
+        <div className='flex justify-center mt-5'>
             <Progress
-            size="sm"
             isIndeterminate
             label="Loading coins-slider..."
             aria-label="Loading..."
             className="max-w-md text-white"
             classNames={{
-                indicator: "bg-[#cfb52b]",
+                indicator: "bg-[#1299fa]",
             }}
             /> 
         </div>    

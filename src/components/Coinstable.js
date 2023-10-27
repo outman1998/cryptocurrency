@@ -198,15 +198,14 @@ export default function Coinstable(props) {
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className=' pt-10 lg:px-24 bg-sky-950'>
+    <div className='pb-20 pt-14 lg:px-24 bg-[#061121]'>
       
       {
       loading ?
       <>
-      <p className='text-center text-xl lg:text-3xl text-white mb-5'>Discover all your favourite crypto's</p>
+      <p className='text-3xl font-bold text-center text-white mb-5'>Discover all your favourite crypto's</p>
       <div className='flex justify-center'>
         <Progress
-          size="sm"
           isIndeterminate
           label="Loading all coins..."
           aria-label="Loading..."

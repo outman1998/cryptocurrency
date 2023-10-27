@@ -29,21 +29,20 @@ export default function Navigation(props) {
 
 
   return (
-    <div className='flex bg-sky-950	justify-between items-center px-5 py-3 shadow-lg'>
+    <div className='flex justify-between items-center px-5 py-3 shadow-lg bg-[#061121] '>
       
       <h1>
-        <Link onClick={redirectToHome} className='text-[#ffd600] font-bold text-md sm:text-lg md:text-2xl cursor-pointer'>cryptoHunter</Link>
+        <Link onClick={redirectToHome} className='text-white font-bold text-md sm:text-lg md:text-2xl cursor-pointer'>cryptoHunter</Link>
       </h1>
 
       <div className='flex items-center'>
         <Select
-          variant="bordered"
-          color='black'
+          color='#0b1426'
           size='sm'
           label="Currency"
           placeholder={currency}
           // selectedKeys={value}
-          className="w-28 text-white mr-3"
+          className="w-24 text-[#0b1426] mr-3"
           onChange={handleSelectionChange}
         >
           {currencies.map((currency) => (
