@@ -12,7 +12,7 @@ export default function Banner() {
         <div className="flex mx-3 h-40% flex-col justify-center items-center lg:mx-20 lg:text-center">
           <div>
             <Fade bottom>
-              <h1 className='font-bold mb-15 font-montserrat text-[40px] lg:text-6xl lg:mx-48'>Get all the info regarding your favorite crypto currency</h1>
+              <h1 className='font-bold mb-15 font-montserrat text-[40px] lg:text-6xl lg:mx-48'>Get alll the info regarding your favorite crypto currency</h1>
             </Fade>
           </div>
           <div>
