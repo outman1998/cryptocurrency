@@ -8,7 +8,7 @@ const url = 'https://raw.githubusercontent.com/piyush-eon/react-crypto-tracker/m
 export default function Bannerforcryptopage() {
 
   return (
-    <div style={{backgroundImage: `url(${url})`}} className='py-24'>
+    <div style={{backgroundImage: `url(${url})`}} className='py-16'>
 
       <div className="h-400 flex flex-col justify-between text-white">
 
@@ -35,8 +35,6 @@ export default function Bannerforcryptopage() {
           </div>
 
         </div>
-
-        <Carousel />
 
       </div>
         
