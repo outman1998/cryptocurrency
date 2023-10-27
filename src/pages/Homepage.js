@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import Banner from '../components/Banner';
 import Coinstable from '../components/Coinstable';
 import { Button } from '@nextui-org/react';
@@ -14,6 +14,7 @@ import {useNavigate} from 'react-router-dom';
 import Drawer from '../components/sidebar/Drawer';
 import Card from '../components/sidebar/Card';
 import { useCurrency } from '../context/context';
+import { Fade } from 'react-reveal';
 
 export default function Homepage() {
 
@@ -40,21 +41,34 @@ export default function Homepage() {
 
       <Banner />
 
-      <div className='bg-sky-950'>
-        <div className=' px-2 text-center pt-20'>
-          <p className='text-[#ffd600] lg:text-lg font-bold'>Cryptohunter.com</p>
-          <p className='text-4xl lg:text-6xl text-center lg:mx-52 font-bold'>Buy Bitcoin, Ethereum and 98+ cryptocurrencies</p>
-          <Button 
-          size='lg' 
-          className='mt-5 text-white bg-sky-950 border-2 border-sky-800 font-semibold text-xl px-12'
-          onClick={sendToCryptoPage}
+        <div className='bg-sky-950 px-2 text-center pt-20'>
+
+        <Fade bottom>
+          <p className={'text-[#ffd600] lg:text-lg font-bold'}>
+            Cryptohunter.com
+          </p>
+        </Fade>
+
+        <Fade bottom delay={300}>
+          <p className={`text-4xl lg:text-6xl text-center lg:mx-52 font-bold`}>
+            Buy Bitcoin, Ethereum and 98+ cryptocurrencies
+          </p>
+        </Fade>
+
+        <Fade bottom delay={600}>
+          <Button
+            size='lg'
+            className='mt-5 text-white bg-sky-950 border-2 border-sky-800 font-semibold text-xl px-12'
+            onClick={sendToCryptoPage}
           >
-            Check all crypto prices 
-            <TbZoomMoney /> 
+            Check all crypto prices
+            <TbZoomMoney />
           </Button>
+        </Fade>
+
         </div>
+
         <Trending />
-      </div>
 
       <div className='bg-sky-900 py-20'>
 
