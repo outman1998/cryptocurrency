@@ -1,6 +1,7 @@
 import React from 'react'
 import {Divider} from "@nextui-org/react";
 import {Accordion, AccordionItem} from "@nextui-org/react";
+import {AiOutlinePlus} from "react-icons/ai";
 
 export default function Footer() {
   return (
@@ -52,32 +53,29 @@ motionProps={{
   },
 }}
 >
-  <AccordionItem className='text-white border-b-1 border-white' key="1" aria-label="Accordion 1" title={<div className="text-white font-bold text-2xl">What is crypto?</div>}>
+  <AccordionItem indicator={<AiOutlinePlus className="text-white text-xl font-bold" />} className='text-white border-b-1 border-white' key="1" aria-label="Accordion 1" title={<div className="text-white font-bold text-xl lg:text-2xl">What is crypto?</div>}>
   Cryptocurrency is a digital or virtual currency that operates on distributed ledger technology called a blockchain and uses cryptography for security. It is decentralized and operates independently of a central bank.
   Unlike traditional currencies, cryptocurrencies are not backed by a physical commodity or government, and their value is determined by market demand and supply. Cryptocurrencies can be used to buy goods and services, transfer funds, and trade in markets. Popular cryptocurrencies include Bitcoin, Ethereum, Litecoin, Ripple, and Cronos.
   <br></br><br></br>
   Many cryptocurrencies, like Bitcoin, are created through a process called mining, which involves solving complex mathematical equations to validate and record transactions on a blockchain. This mechanism is also called Proof of Work (PoW). Another consensus mechanism that has increased in popularity — as it is more energy efficient — is Proof of Stake (PoS). Instead of mining, PoS relies on network participants validating transactions. Ethereum, the second-largest cryptocurrency, uses this consensus mechanism.
   </AccordionItem>
-  <AccordionItem className='text-white border-b-1 border-white' key="2" aria-label="Accordion 2" title={<div className="text-white font-bold text-2xl">How to buy crypto?</div>}>
+  <AccordionItem indicator={<AiOutlinePlus className="text-white text-xl font-bold" />} className='text-white border-b-1 border-white' key="2" aria-label="Accordion 2" title={<div className="text-white font-bold lg:text-2xl text-xl ">How to buy crypto?</div>}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   </AccordionItem>
-  <AccordionItem className='text-white border-b-1 border-white' key="3" aria-label="Accordion 3" title={<div className="text-white font-bold text-2xl">How to trade crypto?</div>}>
+  <AccordionItem indicator={<AiOutlinePlus className="text-white text-xl font-bold" />} className='text-white border-b-1 border-white' key="3" aria-label="Accordion 3" title={<div className="text-white font-bold lg:text-2xl text-xl ">What is bitcoin?</div>}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   </AccordionItem>
-  <AccordionItem className='text-white border-b-1 border-white' key="3" aria-label="Accordion 3" title={<div className="text-white font-bold text-2xl">How to trade crypto?</div>}>
+  <AccordionItem indicator={<AiOutlinePlus className="text-white text-xl font-bold" />} className='text-white border-b-1 border-white' key="4" aria-label="Accordion 4" title={<div className="text-white font-bold lg:text-2xl text-xl ">What is NFT?</div>}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   </AccordionItem>
-  <AccordionItem className='text-white border-b-1 border-white' key="3" aria-label="Accordion 3" title={<div className="text-white font-bold text-2xl">How to trade crypto?</div>}>
+  <AccordionItem indicator={<AiOutlinePlus className="text-white text-xl font-bold" />} className='text-white border-b-1 border-white' key="5" aria-label="Accordion 5" title={<div className="text-white font-bold lg:text-2xl text-xl ">How to but NFT's?</div>}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   </AccordionItem>
-  <AccordionItem className='text-white border-b-1 border-white' key="3" aria-label="Accordion 3" title={<div className="text-white font-bold text-2xl">How to trade crypto?</div>}>
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-  </AccordionItem>
-  <AccordionItem className='text-white border-b-1 border-white' key="3" aria-label="Accordion 3" title={<div className="text-white font-bold text-2xl">How to trade crypto?</div>}>
+  <AccordionItem indicator={<AiOutlinePlus className="text-white text-xl font-bold" />} className='text-white border-b-1 border-white' key="6" aria-label="Accordion 6" title={<div className="text-white font-bold lg:text-2xl text-xl ">How to start trading in Cryptohunter</div>}>
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   </AccordionItem>
 </Accordion>
-<p className='mt-3'>Have more questions? <span className='text-[#ffd600] font-semibold'>Contact Us</span></p>
+<p className='mt-3 text-md'>Have more questions? <span className='text-[#ffd600] font-semibold'>Contact Us</span></p>
 
 </div>
 

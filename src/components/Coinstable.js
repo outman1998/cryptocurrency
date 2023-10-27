@@ -217,7 +217,7 @@ export default function Coinstable(props) {
       </div>
       </>
       :
-      <div className='bg-sky-950 overflow-x-auto px-2'>
+      <div className='overflow-x-auto px-2'>
         <p className='text-center text-white text-xl lg:text-3xl pb-5'>Discover all your favourite crypto's</p>
         <Table
           aria-label="Example table with custom cells, pagination and sorting"
