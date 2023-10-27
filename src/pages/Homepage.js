@@ -14,7 +14,7 @@ import {useNavigate} from 'react-router-dom';
 import Drawer from '../components/sidebar/Drawer';
 import Card from '../components/sidebar/Card';
 import { useCurrency } from '../context/context';
-import { Fade } from 'react-reveal';
+import { Fade } from "react-awesome-reveal";
 
 export default function Homepage() {
 

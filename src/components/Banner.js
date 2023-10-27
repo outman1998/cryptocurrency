@@ -1,7 +1,7 @@
 import React from 'react';
 import Carousel from './Carousel';
 import { AiFillCheckCircle } from 'react-icons/ai';
-import { Fade } from 'react-reveal';
+import { Fade } from "react-awesome-reveal";
 
 const url = 'https://raw.githubusercontent.com/piyush-eon/react-crypto-tracker/master/public/banner2.jpg';
 
