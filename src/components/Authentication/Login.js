@@ -37,10 +37,8 @@ export default function Login(props) {
 
   const googleProvider = new GoogleAuthProvider();
   const signInWithGoogle = () => {
-    signInWithPopup(auth, googleProvider).then(res => {
-
-    });
-
+    return signInWithPopup(auth, googleProvider);
+    
     props.onClose();
   }
 
