@@ -142,7 +142,7 @@ export default function Coinstable(props) {
         <div className='flex justify-center'>
         <Input
               isClearable
-              className="w-full"
+              className="w-full text-black"
               size='lg'
               placeholder="Search for a crypto currency..."
               value={filterValue}
@@ -229,7 +229,6 @@ export default function Coinstable(props) {
           topContentPlacement="outside"
           onSelectionChange={setSelectedKeys}
           removeWrapper
-          className='overflow-x-auto'
         >
           <TableHeader className='py-10' columns={props.columns}>
             {(column) => (
