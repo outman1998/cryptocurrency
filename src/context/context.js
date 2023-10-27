@@ -33,7 +33,7 @@ export default function Context({children}) {
         else {
           setUser(null)
         } 
-        console.log(user.email);
+        console.log(user?.email || "email eksisterer ikke nu");
       })
     }, []);
 

@@ -33,7 +33,6 @@ export default function Coinpage() {
     fetchCoin();
   }, []);
 
-  console.log(coin);
 
   if (!coin) return <div style={{backgroundColor: 'gold'}} />
 

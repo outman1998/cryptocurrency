@@ -4,7 +4,6 @@ import { useCurrency } from '../context/context';
 import Drawer from '../components/sidebar/Drawer';
 import Card from '../components/sidebar/Card';
 
-
 export default function Cryptopage() {
   
     const columns = [
@@ -22,6 +21,7 @@ export default function Cryptopage() {
       <Drawer isOpen={isOpen} setIsOpen={setIsOpen}>
         <Card />
       </Drawer>
+
         <Coinstable 
         columns={columns}
         />

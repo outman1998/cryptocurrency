@@ -15,9 +15,6 @@ import Drawer from '../components/sidebar/Drawer';
 import Card from '../components/sidebar/Card';
 import { useCurrency } from '../context/context';
 
-
-
-
 export default function Homepage() {
 
   const {setIsOpen, isOpen} = useCurrency();

@@ -9,8 +9,6 @@ import {Table, TableHeader, TableColumn, TableBody, TableRow, TableCell, Input, 
 export default function Coinstable(props) {
 
     const [filterValue, setFilterValue] = useState("");
-    // const [coins, setCoins] = useState([]);
-    // const [loading, setLoading] = useState(false);
     const {currency, symbol, coins, setCoins, loading, setLoading, fetchCoins} = useCurrency();
     const navigate = useNavigate();
 
@@ -132,19 +130,6 @@ export default function Coinstable(props) {
     setFilterValue("")
     setPage(1)
   },[]);
-
-    // kalder den her når komponenten oprettes første gang og hver gang currency ændrer sig. 
-    // const fetchCoins = async () => {
-    //   try {
-    //     setLoading(true);
-    //     const { data } = await axios.get(CoinList(currency));
-    //     setCoins(data);
-    //     setLoading(false);
-    //   } catch(error) {
-    //     console.log(error); 
-    //     console.log("fejl!!"); 
-    //   }
-    // };
   
     useEffect(() => {
       fetchCoins();
