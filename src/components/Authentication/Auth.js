@@ -11,7 +11,7 @@ export default function Auth(props) {
   return (
     <>
         <Button className='bg-[#ffd600] font-bold rounded-lg h-12' onPress={onOpen}>Login</Button>
-        <Modal isOpen={isOpen} onOpenChange={onOpenChange}>
+        <Modal isOpen={isOpen} onOpenChange={onOpenChange} >
             <ModalContent>
             {(onClose) => (
                 <>
