@@ -94,7 +94,7 @@ export default function Trending() {
 
             return (
               <div className='flex items-center justify-end '>
-                <div className='mr-2'>
+                <div className='mr-5'>
                   <p className="text-bold text-md  capitalize">
                   {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
                   </p> 
