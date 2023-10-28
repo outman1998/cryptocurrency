@@ -85,7 +85,7 @@ export default function Trending() {
         case "coin":
           return (
               <>
-              <p className='font-bold text-md lg:text-2xl'> {result} </p>
+              <p className='font-bold text-lg'> {result} </p>
               <p className='font-light'>{coin.symbol.toUpperCase()}</p>
               </>
           );  
@@ -95,16 +95,16 @@ export default function Trending() {
             return (
               <div className='flex items-center justify-end '>
                 <div className='mr-2'>
-                  <p className="text-bold text-md  capitalize">
+                  <p className="text-bold text-lg  capitalize">
                   {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
                   </p> 
-                  <p className={`text-md text-right ${percentageChange < 0 ? 'text-red-500' : 'text-yellow-400'}`}>
+                  <p className={`text-lg text-right ${percentageChange < 0 ? 'text-red-500' : 'text-yellow-400'}`}>
                   <span>{percentageChange >= 0 ? '+' : ''} {percentageChange?.toFixed(2)}%</span>
                   </p> 
                 </div>
               <div>
                 <Button
-                  className='bg-white rounded-4xl'
+                  className='bg-white rounded-3xl font-bold text-lg'
                   onClick={() => navigate(`/coins/${coin.id}`)}
                 >
                   View
@@ -168,7 +168,7 @@ export default function Trending() {
               <TableBody items={trending.slice(0,5)}>
                 {(coin, indes, isLast) => (
                     <TableRow 
-                    className='border-b-1 border-[#0b1426] cursor-pointer hover:bg-[#0b1426]' 
+                    className='border-b-1 border-[#ffffff2b] cursor-pointer hover:bg-[#0b1426]' 
                     key={coin.id}
                     >
                     {(columnKey) => <TableCell>{renderCellForSmallScreen(coin, columnKey)}</TableCell>}
