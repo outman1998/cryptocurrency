@@ -39,28 +39,28 @@ export default function Trending() {
           case "coin":
             return (
                 <>
-                <p className='font-bold text-2xl'> {result} </p>
+                <p className='font-bold text-md lg:text-2xl'> {result} </p>
                 <p className='font-light'>{coin.symbol.toUpperCase()}</p>
                 </>
             );
           case "price":
             return (
-                <p className="text-bold text-2xl capitalize">
+                <p className="text-bold text-md lg:text-2xl capitalize">
                 {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
                 </p>            
                 );
-          case "24h_change":
-            const profit = coin?.price_change_percentage_24h >= 0;
-
-            return (
-                <p className='text-2xl'>
-                <span style={{color: profit > 0 ? "rgb(255, 214, 1)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% 
-                </span>
-                </p>
-            );
+                case "24h_change":
+                  const percentageChange = coin?.price_change_percentage_24h;
+                
+                  return (
+                    <p className={`text-2xl ${percentageChange < 0 ? 'text-red-500' : 'text-yellow-400'}`}>
+                      <span>{percentageChange >= 0 ? '+' : ''} {percentageChange?.toFixed(2)}%</span>
+                    </p>
+                  );
+                
         case "marketCap":
             return (
-                <p className='text-2xl'>
+                <p className={`text-md lg:text-2xl}`}>
                 {symbol + ' '} {numberWithCommas(coin.market_cap.toString().slice(0, -6))}
                 </p>            
             );
@@ -72,11 +72,50 @@ export default function Trending() {
                 >
                   View
                 </Button>
-              ) : <Button className='bg-white px-8 rounded-3xl'>Login To Trade</Button>;
+              ) : <Button className='bg-white px-2 lg:px-8 rounded-3xl'>Trade</Button>;
             default:
               return cellValue;
         }
       }, [symbol]);
+
+    const renderCellForSmallScreen = React.useCallback((coin, columnKey) => {
+      const cellValue = coin[columnKey];
+      let result = coin.id.charAt(0).toUpperCase() + coin.id.slice(1);
+      switch (columnKey) {
+        case "coin":
+          return (
+              <>
+              <p className='font-bold text-md lg:text-2xl'> {result} </p>
+              <p className='font-light'>{coin.symbol.toUpperCase()}</p>
+              </>
+          );  
+          case "actions":
+            const percentageChange = coin?.price_change_percentage_24h;
+
+            return (
+              <div className='flex items-center justify-end '>
+                <div className='mr-2'>
+                  <p className="text-bold text-md  capitalize">
+                  {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
+                  </p> 
+                  <p className={`text-md text-right ${percentageChange < 0 ? 'text-red-500' : 'text-yellow-400'}`}>
+                  <span>{percentageChange >= 0 ? '+' : ''} {percentageChange?.toFixed(2)}%</span>
+                  </p> 
+                </div>
+              <div>
+                <Button
+                  className='bg-white rounded-4xl'
+                  onClick={() => navigate(`/coins/${coin.id}`)}
+                >
+                  View
+                </Button>
+              </div>
+            </div>  
+            )
+          default:
+            return cellValue;
+      }
+    }, [symbol]);
 
       const columns = [
         {name: "Coin", uid: "coin"},
@@ -84,35 +123,64 @@ export default function Trending() {
         {name: "24h change", uid: "24h_change"},
         {name: "Market cap", uid: "marketCap"},
         {name: "actions", uid: "actions"}
+      ];
 
+      const columnsForSmallScreen = [
+        {name: "Coin", uid: "coin"},
+        {name: "actions", uid: "actions"}
       ];
 
   return (
     <>
     {!loading ? (
-    <div className='py-10 px-5 overflow-x-auto bg-[#061121]'>
-        <Table aria-label="Example static collection table" removeWrapper hideHeader className='lg:w-3/4 m-auto'>
-      <TableHeader  columns={columns}>
-      {(column) => (
-              <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>
-                {column.name}
-              </TableColumn>
-            )}
-      </TableHeader>
-      <TableBody items={trending.slice(0,5)}>
-        {(coin, indes, isLast) => (
-            <TableRow 
-            className='border-b-1 border-[#0b1426] cursor-pointer hover:bg-[#0b1426]' 
-            key={coin.id}
-            >
-            {(columnKey) => <TableCell>{renderCell(coin, columnKey)}</TableCell>}
-            </TableRow>
-        )}
-      </TableBody>
-    </Table>
-    </div>
+      <div>
+        <div className='py-10 hidden md:block px-5 overflow-x-auto bg-[#061121]'>
+          <Table aria-label="Example  static collection table" removeWrapper hideHeader className='lg:w-3/4 m-auto'>
+            <TableHeader  columns={columns}>
+            {(column) => (
+                    <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>
+                      {column.name}
+                    </TableColumn>
+                  )}
+            </TableHeader>
+            <TableBody items={trending.slice(0,5)}>
+              {(coin, indes, isLast) => (
+                  <TableRow 
+                  className='border-b-1 border-[#0b1426] cursor-pointer hover:bg-[#0b1426]' 
+                  key={coin.id}
+                  >
+                  {(columnKey) => <TableCell>{renderCell(coin, columnKey)}</TableCell>}
+                  </TableRow>
+              )}
+            </TableBody>
+          </Table>
+        </div>
+
+        <div className='py-10 px-5 md:hidden'>
+          <Table aria-label="Example  static collection table" removeWrapper hideHeader className='lg:w-3/4 m-auto'>
+              <TableHeader  columns={columnsForSmallScreen}>
+              {(column) => (
+                      <TableColumn className='text-black bg-[#ffd600] text-sm lg:text-lg' key={column.uid}>
+                        {column.name}
+                      </TableColumn>
+                    )}
+              </TableHeader>
+              <TableBody items={trending.slice(0,5)}>
+                {(coin, indes, isLast) => (
+                    <TableRow 
+                    className='border-b-1 border-[#0b1426] cursor-pointer hover:bg-[#0b1426]' 
+                    key={coin.id}
+                    >
+                    {(columnKey) => <TableCell>{renderCellForSmallScreen(coin, columnKey)}</TableCell>}
+                    </TableRow>
+                )}
+              </TableBody>
+          </Table>
+        </div>
+      </div>
+
     ) :
-    <div className='pt-10 flex justify-center bg-[#061121]'>
+    <div className='pt-10 px-5 flex justify-center bg-[#061121]'>
     <Progress
       isIndeterminate
       label="Loading trending coins..."

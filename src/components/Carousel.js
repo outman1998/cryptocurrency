@@ -88,7 +88,7 @@ export default function Carousel() {
             items={items}
             />
         </div> : 
-        <div className='flex justify-center mt-5'>
+        <div className='flex px-5 justify-center mt-5'>
             <Progress
             isIndeterminate
             label="Loading coins-slider..."
