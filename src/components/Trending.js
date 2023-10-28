@@ -39,13 +39,13 @@ export default function Trending() {
           case "coin":
             return (
                 <>
-                <p className='font-bold text-md lg:text-2xl'> {result} </p>
+                <p className='font-bold text-2xl'> {result} </p>
                 <p className='font-light'>{coin.symbol.toUpperCase()}</p>
                 </>
             );
           case "price":
             return (
-                <p className="text-bold text-md lg:text-2xl capitalize">
+                <p className="text-bold text-2xl capitalize">
                 {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
                 </p>            
                 );
@@ -60,7 +60,7 @@ export default function Trending() {
                 
         case "marketCap":
             return (
-                <p className={`text-md lg:text-2xl}`}>
+                <p className={`text-2xl}`}>
                 {symbol + ' '} {numberWithCommas(coin.market_cap.toString().slice(0, -6))}
                 </p>            
             );
@@ -95,7 +95,7 @@ export default function Trending() {
             return (
               <div className='flex items-center justify-end '>
                 <div className='mr-2'>
-                  <p className="text-bold text-lg  capitalize">
+                  <p className="text-bold text-md  capitalize">
                   {symbol + ' '} {numberWithCommas(coin.current_price.toFixed(2))}
                   </p> 
                   <p className={`text-lg text-right ${percentageChange < 0 ? 'text-red-500' : 'text-yellow-400'}`}>
