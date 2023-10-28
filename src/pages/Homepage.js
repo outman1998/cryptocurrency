@@ -61,7 +61,7 @@ export default function Homepage() {
             className='mt-5 text-white bg-[#061121] border-1 border-white font-semibold text-xl px-12 rounded-3xl'
             onClick={sendToCryptoPage}
           >
-            Check all crypto prices
+            Check live crypto prices
             <TbZoomMoney />
           </Button>
         </Fade>
@@ -78,15 +78,15 @@ export default function Homepage() {
 
           <div className='lg:flex lg:space-x-4 md:mx-40' style={{ height: '100%'}}>
             <div className='lg:w-1/2'>
-              <div style={{ background: 'radial-gradient(123.14% 44.41% at 77.00% 45.58%, rgba(17, 153, 250, 0.20) 0%, rgba(17, 153, 250, 0.00) 100%), radial-gradient(172.02% 136.06% at 4.78% 96.68%, rgba(1, 1, 24, 0.40) 0%, rgba(1, 1, 24, 0.00) 100%), #002F61' }} className='h-60 rounded-2xl mx-5 p-4 relative'>
+              <div style={{ background: 'radial-gradient(123.14% 44.41% at 77.00% 45.58%, rgba(17, 153, 250, 0.20) 0%, rgba(17, 153, 250, 0.00) 100%), radial-gradient(172.02% 136.06% at 4.78% 96.68%, rgba(1, 1, 24, 0.40) 0%, rgba(1, 1, 24, 0.00) 100%), #002F61' }} className='h-60 mx-5 lg:mx-0 rounded-2xl p-4 relative'>
                 <div className='w-1/2 pr-[20px] md:pr-0 flex flex-col justify-center h-48'>
                   <p className='text-[#ffd600] font-bold text-2xl'>Buy crypto</p>
                   <p className='text-xl font-bold'>Buy BTC, ETH, and other crypto easily via bank transfer.</p>
                 </div>
-                <img src={img1} style={{ height: "200px" }} className='absolute bottom-0 right-6' />
+                <img src={img1} style={{ height: "230px" }} className='absolute bottom-0 right-8' />
               </div>
 
-              <div style={{ background: 'radial-gradient(123.14% 44.41% at 77.00% 45.58%, rgba(17, 153, 250, 0.20) 0%, rgba(17, 153, 250, 0.00) 100%), radial-gradient(172.02% 136.06% at 4.78% 96.68%, rgba(1, 1, 24, 0.40) 0%, rgba(1, 1, 24, 0.00) 100%), #002F61' }} className='rounded-2xl mx-5 my-5 p-4'>
+              <div style={{ background: 'radial-gradient(123.14% 44.41% at 77.00% 45.58%, rgba(17, 153, 250, 0.20) 0%, rgba(17, 153, 250, 0.00) 100%), radial-gradient(172.02% 136.06% at 4.78% 96.68%, rgba(1, 1, 24, 0.40) 0%, rgba(1, 1, 24, 0.00) 100%), #002F61' }} className='rounded-2xl mx-5 lg:mx-0 my-5 p-4'>
                 <p className='text-[#ffd600] font-bold text-2xl'>Price alerts</p>
                 <p className='font-bold text-xl mb-5'>Be notified on BTC, ETH, XRP prices, and more.</p>
                 <PriceAlertsTable />
@@ -94,7 +94,7 @@ export default function Homepage() {
             </div>
 
             <div className='lg:w-1/2 h-full'>
-              <div style={{ background: 'radial-gradient(123.14% 44.41% at 77.00% 45.58%, rgba(17, 153, 250, 0.20) 0%, rgba(17, 153, 250, 0.00) 100%), radial-gradient(172.02% 136.06% at 4.78% 96.68%, rgba(1, 1, 24, 0.40) 0%, rgba(1, 1, 24, 0.00) 100%), #002F61', height: '100%' }} className='lg:row-span-3 rounded-2xl mx-5 p-4 pb-0'>
+              <div style={{ background: 'radial-gradient(123.14% 44.41% at 77.00% 45.58%, rgba(17, 153, 250, 0.20) 0%, rgba(17, 153, 250, 0.00) 100%), radial-gradient(172.02% 136.06% at 4.78% 96.68%, rgba(1, 1, 24, 0.40) 0%, rgba(1, 1, 24, 0.00) 100%), #002F61', height: '100%' }} className='lg:row-span-3 rounded-2xl mx-5 lg:mx-0 p-4 pb-0'>
                 <div className='mb-16'>
                   <p className='text-[#ffd600] font-bold text-2xl'>Recurring Buy</p>
                   <p className='text-xl font-bold'>Grow your portfolio automatically with daily, weekly, or monthly trades.</p>
