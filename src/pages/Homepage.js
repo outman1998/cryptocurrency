@@ -83,7 +83,7 @@ export default function Homepage() {
                   <p className='text-[#ffd600] font-bold text-2xl'>Buy crypto</p>
                   <p className='text-xl font-bold'>Buy BTC, ETH, and other crypto easily via bank transfer.</p>
                 </div>
-                <img src={img} style={{ height: "200px" }} className='absolute bottom-0 right-6' />
+                <img src={img1} style={{ height: "200px" }} className='absolute bottom-0 right-6' />
               </div>
 
               <div style={{ background: 'radial-gradient(123.14% 44.41% at 77.00% 45.58%, rgba(17, 153, 250, 0.20) 0%, rgba(17, 153, 250, 0.00) 100%), radial-gradient(172.02% 136.06% at 4.78% 96.68%, rgba(1, 1, 24, 0.40) 0%, rgba(1, 1, 24, 0.00) 100%), #002F61' }} className='rounded-2xl mx-5 my-5 p-4'>
@@ -99,7 +99,7 @@ export default function Homepage() {
                   <p className='text-[#ffd600] font-bold text-2xl'>Recurring Buy</p>
                   <p className='text-xl font-bold'>Grow your portfolio automatically with daily, weekly, or monthly trades.</p>
                 </div>
-                <img src={img1} style={{ height: "350px" }} className='mx-auto' />
+                <img src={img} style={{ height: "350px" }} className='mx-auto' />
               </div>
             </div>
           </div>

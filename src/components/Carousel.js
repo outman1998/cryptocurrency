@@ -59,7 +59,7 @@ export default function Carousel() {
                 style={{marginBottom: 10 }}
                 />
                 <span>
-                    { <p className='text-xl'>coin?.symbol</p>}
+                    { <span className='text-xl'>{coin?.symbol}</span>}
                     <br></br>
                     <span className='text-xl' style={{color: profit > 0 ? "rgb(12, 203, 129)" : "red"}}>{profit && '+'} {coin?.price_change_percentage_24h?.toFixed(2)}% </span>
                 </span>

@@ -15,6 +15,7 @@ export default function Footer() {
 <div className='lg:w-1/2'>
 
 <Accordion  
+className='p-0'
 variant="bordered" 
 motionProps={{
   variants: {
@@ -75,6 +76,7 @@ motionProps={{
     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
   </AccordionItem>
 </Accordion>
+
 <p className='mt-3 text-md'>Have more questions? <span className='text-[#ffd600] font-semibold'>Contact Us</span></p>
 
 </div>

@@ -22,13 +22,13 @@ export default function Banner() {
           </div>
           <div className=''>
             <Fade bottom delay={600}>
-              <div className='flex text-xl items-baseline mt-5 lg:mx-20'>
+              <div className='flex mb-2 text-xl items-baseline mt-5 lg:mx-20'>
                 <p className='text-[#1299fa]'>{<AiFillCheckCircle />}</p>
                 <p className=' ml-1'>Trusted by more than <span className='text-[#1299fa]'>80M users</span> world-wide</p>
               </div>
             </Fade>
             <Fade bottom delay={900}>
-              <div className='flex text-xl items-baseline lg:mx-20'>
+              <div className='flex mb-2 text-xl items-baseline lg:mx-20'>
                 <p className='text-[#1299fa]'>{<AiFillCheckCircle />}</p>
                 <p className='ml-1'>Leader in <span className='text-[#1299fa]'>regulatory compliance</span> and <span className='text-[#1299fa]'>security certifications</span></p>
               </div>
