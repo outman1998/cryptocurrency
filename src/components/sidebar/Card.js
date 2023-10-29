@@ -88,7 +88,7 @@ export default function Carden() {
     <div className="watchlist m-5">
     <Card>
       <CardBody>
-        <p className="font-bold text-black m-auto text-lg">Watchlist</p>
+        <p className="font-bold text-black m-auto text-lg">favorites</p>
         <hr></hr>
 
         {allCoins?.map((singleCoin) => {

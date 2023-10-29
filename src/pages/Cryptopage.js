@@ -6,6 +6,7 @@ import Card from '../components/sidebar/Card';
 import {Accordion, AccordionItem} from "@nextui-org/react";
 import Footer from '../components/Footer';
 import Bannerforcryptopage from '../components/Bannerforcryptopage';
+import Topmovers from '../components/Topmovers';
 
 export default function Cryptopage() {
   
@@ -26,6 +27,8 @@ export default function Cryptopage() {
       </Drawer>
 
       <Bannerforcryptopage />
+
+      <Topmovers />
 
       <Coinstable 
       columns={columns}

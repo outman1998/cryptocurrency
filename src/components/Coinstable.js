@@ -203,7 +203,7 @@ export default function Coinstable(props) {
       {
       loading ?
       <>
-      <p className='text-3xl font-bold text-center text-white mb-5'>Discover all your favourite crypto's</p>
+      <p className='text-3xl font-bold text-center text-white mb-5'>Today's Cryptocurrency Prices</p>
       <div className='flex justify-center'>
         <Progress
           isIndeterminate
@@ -218,7 +218,7 @@ export default function Coinstable(props) {
       </>
       :
       <div className='overflow-x-auto px-2'>
-        <p className='text-center text-white text-xl lg:text-3xl pb-5'>Discover all your favourite crypto's</p>
+        <p className='text-center font-bold text-white text-xl lg:text-3xl pb-5'>Today's Cryptocurrency Prices</p>
         <Table
           aria-label="Example table with custom cells, pagination and sorting"
           bottomContent={bottomContent}
@@ -239,7 +239,7 @@ export default function Coinstable(props) {
           <TableBody emptyContent={"No coins found"} items={sortedItems}>
             {(coin) => (
               <TableRow 
-              className=' text-white hover:bg-sky-900 border-b-1 border-sky-900 cursor-pointer'
+              className=' text-white hover:bg-[#0b1426] border-b-1 border-[#ffffff15] cursor-pointer'
               onClick={() => navigate(`/coins/${coin.id}`)}
               key={coin.id}
               >

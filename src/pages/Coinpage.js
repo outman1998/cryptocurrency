@@ -171,7 +171,7 @@ export default function Coinpage() {
         onClick={ inWatchList ? removeFromWatchlist : addToWatchlist} 
         className={`w-[94%] rounded mb-5 ${inWatchList ? 'bg-red-500' : 'bg-[#ffd600]'}`}
         size='lg'> 
-        {inWatchList ? "Remove from watchlist" : "Add to watchlist"} 
+        {inWatchList ? "Remove from favorites" : "Add to favorites"} 
         </Button>
         }
 

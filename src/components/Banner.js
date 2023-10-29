@@ -2,6 +2,7 @@ import React from 'react';
 import Carousel from './Carousel';
 import { AiFillCheckCircle } from 'react-icons/ai';
 import { Fade } from "react-awesome-reveal";
+import { IoCheckmark } from 'react-icons/io5';
 
 const url = 'https://raw.githubusercontent.com/piyush-eon/react-crypto-tracker/master/public/banner2.jpg';
 
@@ -23,19 +24,19 @@ export default function Banner() {
           <div className=''>
             <Fade bottom delay={600}>
               <div className='flex mb-2 text-xl items-baseline mt-5 lg:mx-20'>
-                <p className='text-[#1299fa]'>{<AiFillCheckCircle />}</p>
+                <p className='text-white mr-2 bg-[#138de5] rounded-3xl'>{<IoCheckmark className='' />}</p>
                 <p className=' ml-1'>Trusted by more than <span className='text-[#1299fa]'>80M users</span> world-wide</p>
               </div>
             </Fade>
             <Fade bottom delay={900}>
               <div className='flex mb-2 text-xl items-baseline lg:mx-20'>
-                <p className='text-[#1299fa]'>{<AiFillCheckCircle />}</p>
+                <p className='text-white mr-2 bg-[#138de5] rounded-3xl'>{<IoCheckmark />}</p>
                 <p className='ml-1'>Leader in <span className='text-[#1299fa]'>regulatory compliance</span> and <span className='text-[#1299fa]'>security certifications</span></p>
               </div>
             </Fade>
             <Fade bottom delay={1200}>
               <div className='flex text-xl items-baseline lg:mx-20'>
-                <p className='text-[#1299fa]'>{<AiFillCheckCircle />}</p>
+                <p className='text-white mr-2  rounded-3xl'>{<IoCheckmark className='bg-[#138de5] rounded-3xl' />}</p>
                 <p className='ml-1'>The industry’s most comprehensive <span className='text-[#1299fa]'>insurance coverage</span> and <span className='text-[#1299fa]'>verified proof of reserves</span></p>
               </div>
             </Fade>
