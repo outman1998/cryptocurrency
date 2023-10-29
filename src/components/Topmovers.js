@@ -55,6 +55,7 @@ export default function TopMovers() {
         responsive={responsive}
         autoPlay={true}
         autoPlaySpeed={2000}
+        removeArrowOnDeviceType={["tablet", "mobile"]}
         >
             {trending.map((coin) => {
             const percentageChange = coin?.price_change_percentage_24h;
