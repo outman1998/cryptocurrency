@@ -107,10 +107,7 @@ export default function Homepage() {
       </div>
 
       <Footer />
-      
-      <video src=''>
-
-      </video>
+    
     </div>
   )
 }

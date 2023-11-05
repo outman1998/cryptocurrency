@@ -93,7 +93,7 @@ export default function Carden() {
 
         {allCoins?.map((singleCoin) => {
           
-          if(watchlist.includes(singleCoin.id))
+          if(watchlist.includes(singleCoin.id)) {
           return (
             <div key={singleCoin} className="flex mt-2 text-center justify-between">
             <p className="text-center text-md font-bold">{singleCoin.name}</p> <AiFillDelete
@@ -101,7 +101,9 @@ export default function Carden() {
             onClick={() => removeFromWatchlist(singleCoin)}
             />
             </div> 
-          )
+          )} else {
+            console.log("den er der");
+          }
 
         })}
 
