@@ -198,7 +198,7 @@ export default function Coinstable(props) {
     }, [selectedKeys, items.length, page, pages, hasSearchFilter]);
 
   return (
-    <div className='pb-20 pt-14 lg:px-24 bg-[#061121]'>
+    <div className='pb-20 pt-14 bg-[#061121]'>
       
       {
       loading ?
